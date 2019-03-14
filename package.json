@@ -1,0 +1,41 @@
+{
+  "name": "squeegee-client",
+  "version": "0.1.0",
+  "description": "The client for the Squeegee Whiteboard application",
+  "private": true,
+  "dependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-merge": "^4.2.1"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --open --config config/webpack.dev.js",
+    "build": "webpack --config config/webpack.prod.js",
+    "lint": "eslint --ignore-path .gitignore --ext .jsx,.js ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/squeegee-whiteboard/client.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/squeegee-whiteboard/client/issues"
+  },
+  "homepage": "https://github.com/squeegee-whiteboard/client#readme"
+}
