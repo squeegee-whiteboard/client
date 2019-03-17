@@ -1,9 +1,29 @@
-// Turn off commonjs linting for this file
-/* eslint import/no-commonjs: "off" */
+/* eslint import/no-commonjs: "off", import/no-extraneous-dependencies: "off" */
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsplugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   entry: './src/index.jsx',
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true,
+      }),
+      new OptimizeCSSAssetsplugin({}),
+    ],
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      hash: true,
+      template: './src/index.html',
+    }),
+  ],
   module: {
     rules: [
       {
@@ -17,13 +37,6 @@ module.exports = {
           cacheDirectory: true,
           presets: ['@babel/preset-env', '@babel/preset-react'],
         },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
       },
     ],
   },
