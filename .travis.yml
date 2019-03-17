@@ -1,11 +1,19 @@
 language: node_js
-node_js:
-  - "11"
 
 cache: npm
 
 stages:
-  - linting
+  - lint
+  - build
 
-script:
-  - npm run lint
+jobs:
+  include:
+    - stage: lint
+      node_js:
+        - "11"
+      script: npm run lint
+
+    - stage: build
+      node_js:
+        - "11"
+      script: npm run build
