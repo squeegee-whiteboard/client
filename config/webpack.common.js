@@ -8,7 +8,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        include: path.resolve(__dirname, 'src'),
+        include: path.resolve(__dirname, '../src'),
         resolve: {
           extensions: ['.js', '.jsx'],
         },
@@ -28,7 +28,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: 'bundle.js',
   },
 };
