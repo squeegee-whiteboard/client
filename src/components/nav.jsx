@@ -6,7 +6,10 @@ function Nav() {
   return (
     <nav>
       <div className="nav-wrapper grey darken-2">
-        <a href="index.html" className="brand-logo"><i className="material-icons">wifi</i> Squeegee</a>
+        <a href="index.html" className="brand-logo">
+          <i className="material-icons">wifi</i>
+          Squeegee
+        </a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><a href="index.html">Something</a></li>
           <li><a href="index.html">Something 2</a></li>
