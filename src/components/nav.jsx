@@ -13,7 +13,11 @@ function Nav() {
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><a href="index.html">Something</a></li>
           <li><a href="index.html">Something 2</a></li>
-          <li><a href="index.html">Another thing</a></li>
+          <li>
+            <a href="index.html">
+              <i className="material-icons">person</i>
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
