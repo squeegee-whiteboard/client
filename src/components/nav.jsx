@@ -1,6 +1,5 @@
 import React from 'react';
 import '../index.css';
-import '../materialize.min.css';
 
 function Nav() {
   return (
