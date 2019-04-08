@@ -4,6 +4,7 @@
   "description": "The client for the Squeegee Whiteboard application",
   "private": true,
   "dependencies": {
+    "materialize-css": "^1.0.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-materialize": "^3.0.4"
