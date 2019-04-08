@@ -12,8 +12,12 @@ class Toolbox extends React.Component {
   }
 
   render() {
+    const { selectedTool } = this.state;
     return (
       <div className="toolbox">
+        <div>
+          {`Selected tool: ${selectedTool}`}
+        </div>
         <div className="tools">
           <DrawingTool />
           <EraserTool />

@@ -31,7 +31,6 @@ class DrawingTool extends React.Component {
 
   onClick() {
     this.tool.activate();
-    console.log('Activated drawing');
   }
 
   render() {

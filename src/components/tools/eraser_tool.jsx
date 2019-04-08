@@ -48,7 +48,6 @@ class EraserTool extends React.Component {
 
   onClick() {
     this.tool.activate();
-    console.log('Activated eraser');
   }
 
   render() {
