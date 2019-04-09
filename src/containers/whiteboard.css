@@ -1,7 +1,0 @@
-.whiteboard {
-    display: grid;
-    grid-template-columns: 150px auto;
-    grid-template-rows: 100%;
-    flex-grow: 1;
-    overflow: hidden;
-}
