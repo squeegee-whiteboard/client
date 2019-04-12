@@ -6,11 +6,19 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Whiteboard from './whiteboard';
+import Dashboard from './dashboard';
+
 import Nav from '../components/nav';
 
 function WhiteboardRedirect() {
   return (
     <Redirect to="/whiteboard/1" />
+  );
+}
+
+function DashboardRedirect() {
+  return (
+    <Redirect to="/dashboard" />
   );
 }
 
@@ -21,8 +29,9 @@ function App() {
         <Nav />
       </nav>
       <Switch>
-        <Route exact path="/" component={WhiteboardRedirect} />
-        <Route path="/whiteboard/:id" component={Whiteboard} />
+        {/* <Route exact path="/" component={DashboardRedirect} /> */}
+        <Route path="/dashboard" component={Dashboard} />
+        {/* <Route exact path="/" component={WhiteboardRedirect} /> */}
       </Switch>
     </Router>
   );

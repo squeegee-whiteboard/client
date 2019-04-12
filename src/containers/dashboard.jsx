@@ -1,24 +1,34 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Board from '../components/board';
-import Toolbox from '../components/toolbox';
-import './whiteboard.css';
+import DashCanvas from '../components/dashcanvas';
+import DashAddNew from '../components/dashaddnew';
 
-function Whiteboard() {
+function Dashboard() {
   return (
-    <div className="whiteboard">
-      <Toolbox />
-      <Board />
+    <div className="dashboard">
+      <div className="row">
+        <div className="col m4">
+          <DashAddNew />
+        </div>
+        <div className="col m4">
+          <DashCanvas />
+        </div>
+        <div className="col m4">
+          <DashCanvas />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col m4">
+          <DashCanvas />
+        </div>
+        <div className="col m4">
+          <DashCanvas />
+        </div>
+        <div className="col m4">
+          <DashCanvas />
+        </div>
+      </div>
     </div>
   );
 }
 
-Whiteboard.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
-
-export default Whiteboard;
+export default Dashboard;
