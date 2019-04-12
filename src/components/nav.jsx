@@ -1,10 +1,11 @@
 import React from 'react';
 import '../index.css';
+import './nav.css';
 
 function Nav() {
   return (
     <nav>
-      <div className="nav-wrapper grey darken-2">
+      <div className="nav-wrapper">
         <a href="index.html" className="brand-logo">
           <i className="material-icons" />
           <i className="material-icons">wifi</i>

@@ -35,9 +35,10 @@ class DrawingTool extends React.Component {
 
   render() {
     return (
-      <button className="tool" type="button" onClick={() => this.onClick()}>
+      <button id="tools" className="waves-effect waves-light btn-small" type="button" onClick={() => this.onClick()}>
         Draw
       </button>
+
     );
   }
 }
