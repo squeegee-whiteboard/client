@@ -27,3 +27,4 @@ yarn-error.log*
 
 # VSCode folder
 .vscode/
+.idea/workspace.xml

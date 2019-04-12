@@ -31,7 +31,7 @@ function App() {
       <Switch>
         {/* <Route exact path="/" component={DashboardRedirect} /> */}
         <Route path="/dashboard" component={Dashboard} />
-        {/* <Route exact path="/" component={WhiteboardRedirect} /> */}
+        <Route path="/whiteboard/:id" component={Whiteboard} />
       </Switch>
     </Router>
   );
