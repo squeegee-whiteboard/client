@@ -6,6 +6,7 @@ function Nav() {
     <nav>
       <div className="nav-wrapper grey darken-2">
         <a href="index.html" className="brand-logo">
+          <i className="material-icons" />
           <i className="material-icons">wifi</i>
           Squeegee
         </a>
