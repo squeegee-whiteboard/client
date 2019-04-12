@@ -6,6 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Whiteboard from './whiteboard';
+import Nav from '../components/nav';
 
 function WhiteboardRedirect() {
   return (
@@ -17,7 +18,7 @@ function App() {
   return (
     <Router>
       <nav className="navbar">
-        <h1>Squeegee</h1>
+        <Nav />
       </nav>
       <Switch>
         <Route exact path="/" component={WhiteboardRedirect} />
