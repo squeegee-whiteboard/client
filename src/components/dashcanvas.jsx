@@ -1,17 +1,11 @@
 import React from 'react';
+import './dashcanvas.css';
 
 function DashCanvas() {
   return (
     <div className="card">
       <div className="card-content">
-        <div>
-          <svg>
-            <rect x="0" y="0" width="0" height="0" />
-          </svg>
-          <svg>
-            <rect x="0" y="0" width="0" height="0" />
-          </svg>
-        </div>
+        <div className="whitespace" />
         <span className="card-title activator grey-text text-darken-4 center">
             Board Name
           <i className="material-icons right">more_vert</i>
@@ -27,6 +21,4 @@ function DashCanvas() {
     </div>
   );
 }
-
-
 export default DashCanvas;

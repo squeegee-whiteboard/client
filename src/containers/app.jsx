@@ -3,24 +3,24 @@ import {
   HashRouter as Router,
   Switch,
   Route,
-  Redirect,
+  // Redirect,
 } from 'react-router-dom';
-import Whiteboard from './whiteboard';
+// import Whiteboard from './whiteboard';
 import Dashboard from './dashboard';
 
 import Nav from '../components/nav';
 
-function WhiteboardRedirect() {
-  return (
-    <Redirect to="/whiteboard/1" />
-  );
-}
+// function WhiteboardRedirect() {
+//   return (
+//     <Redirect to="/whiteboard/1" />
+//   );
+// }
 
-function DashboardRedirect() {
-  return (
-    <Redirect to="/dashboard" />
-  );
-}
+// function DashboardRedirect() {
+//   return (
+//     <Redirect to="/dashboard" />
+//   );
+// }
 
 function App() {
   return (
