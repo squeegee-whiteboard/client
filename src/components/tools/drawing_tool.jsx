@@ -1,19 +1,38 @@
+<<<<<<< HEAD
 import React from 'react';
 import { Tool, Path } from 'paper';
 import {Button} from 'react-materialize';
+||||||| merged common ancestors
+import React from 'react';
+import { Tool, Path } from 'paper';
+=======
+import { Path } from 'paper';
+import BaseTool from './base_tool';
+>>>>>>> Hook tools and settings up to react
 
-class DrawingTool extends React.Component {
-  constructor() {
-    super();
+class DrawingTool extends BaseTool {
+  constructor(props) {
+    super(props);
 
-    // Create the drawing tool
-    this.tool = new Tool();
+    this.toolText = 'Draw';
+    this.toolId = DrawingTool.TOOL_ID;
 
+    // Configure the drawing tool
     // Start a new path on mouse down
     this.tool.onMouseDown = (event) => {
+      const { toolSettings } = this.props;
+      const { drawingSettings } = toolSettings;
+      const { color } = drawingSettings;
+      const strokeColor = [
+        color.r / 255,
+        color.g / 255,
+        color.b / 255,
+        color.a,
+      ];
+
       this.path = new Path();
-      this.path.strokeColor = 'black';
-      this.path.strokeWidth = 5;
+      this.path.strokeColor = strokeColor;
+      this.path.strokeWidth = drawingSettings.width;
       this.path.strokeJoin = 'round';
       this.path.strokeCap = 'round';
       this.path.add(event.point);
@@ -29,19 +48,8 @@ class DrawingTool extends React.Component {
       }
     };
   }
-
-  onClick() {
-    this.tool.activate();
-  }
-
-  render() {
-    return (
-      <Button id="tools" className="waves-effect waves-light btn-small" onClick={() => this.onClick()}>
-        Draw
-      </Button>
-
-    );
-  }
 }
+
+DrawingTool.TOOL_ID = 1;
 
 export default DrawingTool;
