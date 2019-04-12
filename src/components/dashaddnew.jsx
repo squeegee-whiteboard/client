@@ -11,7 +11,7 @@ function DashAddNew() {
         <p className="center-align">
           <a className="btn-floating btn-large waves-effect waves-light green"><i className="material-icons">add</i></a>
         </p>
-        <svg width="100%" height="80%">
+        <svg width="100%" height="100%">
           <rect x="0" y="0" />
         </svg>
       </div>
