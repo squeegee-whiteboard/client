@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tool, Path } from 'paper';
+import {Button} from 'react-materialize';
 
 class DrawingTool extends React.Component {
   constructor() {
@@ -35,9 +36,9 @@ class DrawingTool extends React.Component {
 
   render() {
     return (
-      <button id="tools" className="waves-effect waves-light btn-small" type="button" onClick={() => this.onClick()}>
+      <Button id="tools" className="waves-effect waves-light btn-small" onClick={() => this.onClick()}>
         Draw
-      </button>
+      </Button>
 
     );
   }

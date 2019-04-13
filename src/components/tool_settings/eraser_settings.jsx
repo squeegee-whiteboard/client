@@ -1,4 +1,5 @@
 import React from 'react';
+import './tool_settings.css';
 
 function EraserSettings() {
   return (

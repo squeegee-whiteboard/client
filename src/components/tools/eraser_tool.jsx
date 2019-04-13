@@ -5,6 +5,7 @@ import {
   Path,
   Tool,
 } from 'paper';
+import {Button} from 'react-materialize';
 
 class EraserTool extends React.Component {
   constructor() {
@@ -52,9 +53,9 @@ class EraserTool extends React.Component {
 
   render() {
     return (
-      <button id="tools" className="waves-effect waves-light btn-small" type="button" onClick={() => this.onClick()}>
+      <Button id="tools" className="waves-effect waves-light btn-small" onClick={() => this.onClick()}>
         Erase
-      </button>
+      </Button>
     );
   }
 }
