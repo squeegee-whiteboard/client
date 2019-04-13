@@ -8,10 +8,19 @@ function DashAddNew() {
       <div className="card-content">
         <div className="whitespace">
           <p className="btn-wrapper">
-            <a className="btn-floating btn-large waves-effect waves-light green">
+            <a className="btn-floating btn-large waves-effect waves-light green modal-trigger" href="#modal1">
               <i className="material-icons">
                 add
               </i>
+              <div id="modal1" className="modal">
+                <div className="modal-content">
+                  <h4>Modal Header</h4>
+                  <p>A bunch of text</p>
+                </div>
+                <div className="modal-footer">
+                  <a href="#!" className="modal-close waves-effect waves-green btn-flat">Create</a>
+                </div>
+              </div>
             </a>
           </p>
         </div>

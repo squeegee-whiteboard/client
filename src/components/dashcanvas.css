@@ -3,3 +3,27 @@
     height: 300px;
     width:  300px;
 }
+.menu-wrapper{
+    background-color: #666869;
+    color: white;
+    text-align: left;
+    vertical-align: center;
+    margin-bottom: 0px;
+    cursor: pointer;
+}
+.material-icons{
+    font-size: 20px;
+}
+.holder{
+    height:200px;
+    background-color: white;
+}
+.option{
+    padding-left:5px;
+}
+.option:hover{
+    background-color: #aeb1b3;
+}
+#close:hover{
+    color: #b8bec2;
+}

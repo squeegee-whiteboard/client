@@ -12,11 +12,26 @@ function DashCanvas() {
         </span>
       </div>
       <div className="card-reveal">
-        <span className="card-title grey-text text-darken-4">
-            Card Title
-          <i className="material-icons right">close</i>
-        </span>
-        <p>Here is some more information</p>
+        <div className="menu-wrapper">
+          <div className="holder" />
+          <div className="card-title white-text">
+            <i className="material-icons right" id="close">close</i>
+          </div>
+          <span>
+            <div className="option">
+              <i className="material-icons left">edit</i>
+              <p>Rename</p>
+            </div>
+            <div className="option">
+              <i className="material-icons left">share</i>
+              <p>Share</p>
+            </div>
+            <div className="option">
+              <i className="material-icons left">delete</i>
+              <p>Delete</p>
+            </div>
+          </span>
+        </div>
       </div>
     </div>
   );
