@@ -8,6 +8,10 @@ import {
 import Whiteboard from './whiteboard';
 import Dashboard from './dashboard';
 
+import Login from './login';
+import Signup from './signup';
+import './login-signup.css';
+
 import Nav from '../components/nav';
 
 // function WhiteboardRedirect() {
@@ -29,7 +33,9 @@ function App() {
         <Nav />
       </nav>
       <Switch>
-        {/* <Route exact path="/" component={DashboardRedirect} /> */}
+        {/* <Route exact path="/" component={DashboardRedirect} />  */}
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/whiteboard/:id" component={Whiteboard} />
       </Switch>
