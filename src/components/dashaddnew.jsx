@@ -1,25 +1,53 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import './dashaddnew.css';
+import { Modal, Button } from 'react-materialize';
 
 function DashAddNew() {
   return (
-    <div className="card medium">
-      <div className="card-image">
-        <svg width="100%" height="100%">
-          <rect x="0" y="0" />
-        </svg>
-        <p className="center-align">
-          <a className="btn-floating btn-large waves-effect waves-light green"><i className="material-icons">add</i></a>
-        </p>
-        <svg width="100%" height="100%">
-          <rect x="0" y="0" />
-        </svg>
-      </div>
+    <div className="card">
       <div className="card-content">
-        <span className="card-title bottom center grey-text text-ligten-4">Add a New Board</span>
+        <div className="whitespace">
+          <div className="btn-wrapper">
+            <Modal
+              header="Creating a new board"
+              modal-footer="confirm"
+              trigger={(
+                <Button className="btn-floating btn-large waves-effect waves-light green">
+                  {' '}
+                  <i className="material-icons">
+                    add
+                  </i>
+                </Button>
+                )}
+              actions={(
+                <div>
+                  <Button flat modal="close" waves="light" className="transparent">
+                    <i className="material-icons modalicon">
+                      check
+                    </i>
+                  </Button>
+                  <Button flat modal="close" waves="light" className="transparent">
+                    <i className="material-icons modalicon">
+                      close
+                    </i>
+                  </Button>
+                </div>
+                )}
+            >
+              <form>
+              Enter New Board Name:
+                <input type="text" name="firstname" />
+              </form>
+
+            </Modal>
+          </div>
+        </div>
+        <span className="card-title bottom center grey-text text-ligten-4">
+            Add a New Board
+        </span>
       </div>
     </div>
   );
 }
-
 export default DashAddNew;

@@ -4,16 +4,19 @@
   "description": "The client for the Squeegee Whiteboard application",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "materialize-css": "^1.0.0",
     "paper": "^0.12.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-materialize": "^3.0.4",
+    "react-materialize": "^3.0.5",
     "react-router-dom": "^5.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.3",
     "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
@@ -37,7 +40,8 @@
   "scripts": {
     "dev": "webpack-dev-server --open --config config/webpack.dev.js",
     "build": "webpack --config config/webpack.prod.js",
-    "lint": "eslint --ignore-path .gitignore --ext .jsx,.js ."
+    "lint": "eslint --ignore-path .gitignore --ext .jsx,.js .",
+    "node": "babel-node"
   },
   "repository": {
     "type": "git",
