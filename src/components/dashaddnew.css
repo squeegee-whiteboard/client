@@ -1,0 +1,15 @@
+/* TODO: CHANGE to fit the screen dynamically */
+.whitespace{
+    height: 300px;
+    width:  300px;
+}
+.btn-wrapper{
+    width: 100%;
+    padding-left: 60%;
+    padding-top: 45%;
+}
+.modal-content {
+    margin: 5% auto; 
+    width: 80%; 
+    color: rgb(87, 87, 87);
+} 
