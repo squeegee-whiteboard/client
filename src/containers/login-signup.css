@@ -25,6 +25,14 @@ body  {
   color: white;
 }
 
+.login h3 {
+  font-size: 25px;
+  padding-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+  color: rgb(92, 92, 92);
+}
+
 .form-control {
   font-family: Helvetica, 'FontAwesome', sans-serif;
   color: white;
