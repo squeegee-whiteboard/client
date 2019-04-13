@@ -5,7 +5,7 @@ import {
   Route,
   // Redirect,
 } from 'react-router-dom';
-// import Whiteboard from './whiteboard';
+import Whiteboard from './whiteboard';
 import Dashboard from './dashboard';
 
 import Nav from '../components/nav';
