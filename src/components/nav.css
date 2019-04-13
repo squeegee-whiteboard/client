@@ -1,3 +1,12 @@
-.nav-wrapper{
-    background-color: #1F2833;
+a{
+    margin: 5px;
+}
+#person-icon{
+    margin-left:30px;
+    margin-right:30px;
+    font-size: 30px;
+}
+
+#logo{
+    margin-left:40px;
 }

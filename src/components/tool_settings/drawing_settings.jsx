@@ -1,3 +1,4 @@
+import './tool_settings.css';
 import React from 'react';
 
 function DrawingSettings() {
