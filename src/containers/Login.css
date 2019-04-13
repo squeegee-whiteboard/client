@@ -1,0 +1,99 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+
+body  {
+  margin: 0;
+  padding: 0;
+  background-color: black !important;
+}
+
+.login {
+  width: 280px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login h1 {
+  font-size: 60px;
+  padding-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+
+.form-control {
+  font-family: Helvetica, 'FontAwesome', sans-serif;
+  color: white;
+  border-bottom: none!important;
+  box-shadow: none!important;
+  border-radius: 25px !important;
+  text-indent: 20px;
+  background-color: rgba(236, 236, 236, 0.3)!important;
+  margin-bottom: 30px !important;
+}
+
+.form-inline p {
+  color: white;
+  margin-top: -20px;
+  margin-left: 5px;
+  color: rgba(236, 236, 236, 0.8);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.form-inline p:hover  {
+  color: white;
+  cursor: pointer;
+}
+
+.btn {
+  width: 100%;
+  background-color: #009900 !important;
+  border-radius: 25px !important;
+  font-size: 20px !important;
+  margin-bottom: 25px;
+  text-transform: inherit !important;
+  height: 45px !important;
+}
+
+#newAccount {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  border: 4px solid white;
+  line-height: 5px;
+
+}
+
+/* ------------------- Signup css -------------------- */
+
+.Signup {
+  width: 280px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.Signup h1 {
+  font-size: 60px;
+  padding-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+
+.Signup i {
+  font-size: 60px;
+  padding-bottom: 30px;
+  text-align: left;
+  color: white;
+}
+
+#signup-form  {
+  margin-bottom: -10px !important;
+}
+
+#signup-button  {
+  margin-top: 10px;
+}
