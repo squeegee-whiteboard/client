@@ -12,7 +12,9 @@
     cursor: pointer;
 }
 .material-icons{
-    font-size: 20px;
+    font-size: 37px;
+    margin-bottom:2px;
+    margin-top:2px;
 }
 .holder{
     height:200px;
@@ -20,6 +22,8 @@
 }
 .option{
     padding-left:5px;
+    padding-bottom:2px;
+    padding-top:2px;
 }
 .option:hover{
     background-color: #aeb1b3;

@@ -9,7 +9,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-materialize": "^3.0.4",
+    "react-materialize": "^3.0.5",
     "react-router-dom": "^5.0.0"
   },
   "devDependencies": {

@@ -8,3 +8,8 @@
     padding-left: 60%;
     padding-top: 45%;
 }
+.modal-content {
+    margin: 5% auto; 
+    width: 80%; 
+    color: rgb(87, 87, 87);
+} 
