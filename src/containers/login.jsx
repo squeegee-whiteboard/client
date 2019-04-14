@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { TextInput, Button } from 'react-materialize';
 import { auth } from '../api';
 import './login-signup.css';
 
+// TODO: add redirect to from path (populated in redirect_routes PrivateRoute)
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -43,7 +45,7 @@ class Login extends React.Component {
       const { success } = result;
 
       if (!success) {
-        // TODO: error
+        // TODO: error feedback
         console.log("error logging in");
         console.log(result.error);
         return;
@@ -52,8 +54,10 @@ class Login extends React.Component {
       const { token } = result;
       localStorage.setItem('JWT', token);
 
-      // TODO: fix this not working
-      this.history.push('/dashboard');
+      // TODO: feedback
+      console.log('successful signup');
+      const { history } = this.props;
+      history.push('/dashboard');
     });
   }
 
@@ -96,5 +100,11 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Login;
