@@ -7,5 +7,6 @@ import '../node_modules/materialize-css/dist/js/materialize.min';
 
 import './index.css';
 
+
 const mountNode = document.getElementById('app');
 render(<App />, mountNode);

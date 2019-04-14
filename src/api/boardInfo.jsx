@@ -82,9 +82,11 @@ async function isMember(authToken, boardId) {
   return responseData;
 }
 
-
-export {
+const boardInfo = {
   owned,
   member,
   isMember,
 };
+
+export default boardInfo;
+

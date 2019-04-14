@@ -6,7 +6,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsplugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: ['babel-polyfill', './src/index.jsx'],
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
