@@ -50,8 +50,9 @@ async function login(email, password) {
   return responseData;
 }
 
-
-export {
+const auth = {
   register,
   login,
 };
+
+export default auth;

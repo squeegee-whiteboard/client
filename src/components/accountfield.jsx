@@ -3,6 +3,7 @@ import React from 'react';
 // import { DrawingSettings, EraserSettings } from './tool_settings';
 import './accountfield.css';
 import PropTypes from 'prop-types';
+import auth from '../api/auth';
 
 class AccountField extends React.Component {
   constructor(props) {

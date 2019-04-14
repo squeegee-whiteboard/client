@@ -120,10 +120,12 @@ async function addMember(authToken, boardId) {
   return responseData;
 }
 
-
-export {
+const changeBoard = {
   create,
   name,
   deleteBoard,
   addMember,
 };
+
+export default changeBoard;
+
