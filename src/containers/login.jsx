@@ -46,7 +46,7 @@ class Login extends React.Component {
 
       if (!success) {
         // TODO: error feedback
-        console.log("error logging in");
+        console.log('error logging in');
         console.log(result.error);
         return;
       }

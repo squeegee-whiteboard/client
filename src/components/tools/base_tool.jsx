@@ -10,6 +10,8 @@ class BaseTool extends React.Component {
     this.tool = new Tool();
     this.toolText = 'Base';
     this.toolId = BaseTool.TOOL_ID;
+
+    this.onClick = this.onClick.bind(this);
   }
 
   onClick() {
