@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import Whiteboard from './whiteboard';
 import Dashboard from './dashboard';
+import Account from './account';
 
 import Nav from '../components/nav';
 
@@ -32,6 +33,7 @@ function App() {
         {/* <Route exact path="/" component={DashboardRedirect} /> */}
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/whiteboard/:id" component={Whiteboard} />
+        <Route path="/account" component={Account} />
       </Switch>
     </Router>
   );
