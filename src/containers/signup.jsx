@@ -15,10 +15,6 @@ class Signup extends React.Component {
       password: '',
       confirm: '',
       formErrors: '',
-      // formErrors: { email: '', password: '' },
-      // emailValid: false,
-      // passwordValid: false,
-      // formValid: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -57,7 +53,7 @@ class Signup extends React.Component {
     if (!email || !password || !username) {
       errorMsg = 'All fields must be filled in!';
     }
-    
+
     this.setState({ formErrors: errorMsg });
     if (errorMsg) {
       return;
@@ -100,14 +96,19 @@ class Signup extends React.Component {
       // formValid,
     } = this.state;
     // TODO: More validation
-    if (loggedIn) return <Redirect to="/" />; 
+    if (loggedIn) return <Redirect to="/" />;
     return (
+        <div className="page-container">
       <div className="Signup">
         <h1>Squeegee</h1>
         {!!formErrors && <span className="login-signup-error">{formErrors}</span>}
         <form className="form-inline" onSubmit={this.handleSubmit}>
           <div className="form-group" id="signup-form">
             <TextInput
+                style=
+                    {{
+                      color : "white"
+                    }}
               id="email_box"
               label="Email"
               icon="email"
@@ -123,6 +124,10 @@ class Signup extends React.Component {
           </div>
           <div className="form-group" id="signup-form">
             <TextInput
+                style=
+                    {{
+                      color : "white"
+                    }}
               id="username_box"
               label="Username"
               icon="account_circle"
@@ -135,6 +140,10 @@ class Signup extends React.Component {
           </div>
           <div className="form-group" id="signup-form">
             <TextInput
+                style=
+                    {{
+                      color : "white"
+                    }}
               id="password_box"
               password
               label="Password"
@@ -148,6 +157,10 @@ class Signup extends React.Component {
           </div>
           <div className="form-group" id="signup-form">
             <TextInput
+                style=
+                    {{
+                      color : "white"
+                    }}
               id="confirm_password_box"
               password
               label="Confirm Password"
@@ -167,6 +180,7 @@ class Signup extends React.Component {
           </Button>
         </form>
       </div>
+        </div>
     );
   }
 }
