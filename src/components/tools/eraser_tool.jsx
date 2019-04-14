@@ -1,26 +1,33 @@
-import React from 'react';
 import {
   project,
   Color,
   Path,
-  Tool,
 } from 'paper';
+import BaseTool from './base_tool';
 
-class EraserTool extends React.Component {
-  constructor() {
-    super();
+class EraserTool extends BaseTool {
+  constructor(props) {
+    super(props);
+
+    this.toolText = 'Erase';
+    this.toolId = EraserTool.TOOL_ID;
 
     // Create the eraser tool
-    this.tool = new Tool();
     this.removeList = [];
-    this.strokeWidth = 5;
 
     // Get all of the intersections with the erase tool, remove any path that the
     // eraser path intersects with.
     this.tool.onMouseDown = (event) => {
+      const { toolSettings } = this.props;
+      const eraserSettings = toolSettings.eraserSettings || {
+        width: 5,
+      };
+
       this.path = new Path();
       this.path.strokeColor = new Color(0, 0, 0, 0.5);
-      this.path.strokeWidth = this.strokeWidth;
+      this.path.strokeWidth = eraserSettings.width;
+      this.path.strokeJoin = 'round';
+      this.path.strokeCap = 'round';
       this.path.add(event.point);
     };
 
@@ -45,18 +52,8 @@ class EraserTool extends React.Component {
       this.path.remove();
     };
   }
-
-  onClick() {
-    this.tool.activate();
-  }
-
-  render() {
-    return (
-      <button id="tools" className="waves-effect waves-light btn-small" type="button" onClick={() => this.onClick()}>
-        Erase
-      </button>
-    );
-  }
 }
+
+EraserTool.TOOL_ID = 2;
 
 export default EraserTool;
