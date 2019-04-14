@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Redirect,
-} from 'react-router-dom'
+import PropTypes from 'prop-types';
 import { TextInput, Button } from 'react-materialize';
 import { auth } from '../api';
 import './login-signup.css';
@@ -17,7 +15,6 @@ class Signup extends React.Component {
       password: '',
       confirm: '',
       formErrors: '',
-      loggedIn: false,
       // formErrors: { email: '', password: '' },
       // emailValid: false,
       // passwordValid: false,
@@ -73,7 +70,7 @@ class Signup extends React.Component {
 
       if (!success) {
         // TODO: error
-        console.log("error signing up");
+        console.log('error signing up');
         console.log(result.error);
         return;
       }
@@ -81,8 +78,12 @@ class Signup extends React.Component {
       const { token } = result;
       console.log("Setting token...");
       localStorage.setItem('JWT', token);
-      console.log("Should be redirecting...");
-      this.setState({loggedIn: true});
+
+
+      // TODO: feedback
+      console.log('successful signup');
+      const { history } = this.props;
+      history.push('/dashboard');
     });
   }
 
@@ -169,5 +170,11 @@ class Signup extends React.Component {
     );
   }
 }
+
+Signup.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Signup;

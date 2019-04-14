@@ -28,20 +28,41 @@ function PrivateRoute({ component: Component, ...rest }) {
   );
 }
 
+function NoLoginRoute({ component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props => (loggedIn() ? (
+        <Redirect to="/dashboard" />
+      ) : (
+        <Component {...props} />
+      ))}
+    />
+  );
+}
+
+const componentPropType = PropTypes.oneOfType([
+  PropTypes.func,
+  PropTypes.element,
+]);
+
 PrivateRoute.propTypes = {
-  component: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.element,
-  ]).isRequired,
+  component: componentPropType.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }),
 };
-
 PrivateRoute.defaultProps = {
   location: {
     pathname: '',
   },
 };
 
-export default PrivateRoute;
+NoLoginRoute.propTypes = {
+  component: componentPropType.isRequired,
+};
+
+export {
+  PrivateRoute,
+  NoLoginRoute,
+};

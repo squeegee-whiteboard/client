@@ -1,10 +1,9 @@
 @import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 
-/*body  {
-  margin: 0;
-  padding: 0;
-  background-color: black;
-} */
+.page-container{
+  background-color: #1F2833;
+  height: 100%;
+}
 
 .login-signup-error {
   color: red;
@@ -16,6 +15,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: #1F2833;
 }
 
 .login h1 {
@@ -61,7 +61,6 @@
 
 .btn {
   width: 100%;
-  background-color: #009900;
   border-radius: 25px;
   font-size: 20px;
   margin-bottom: 25px;

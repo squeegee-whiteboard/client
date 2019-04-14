@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import '../index.css';
+
 import './nav.css';
 import { Dropdown, Divider } from 'react-materialize';
 import {
   Route,
+  Link,
 } from 'react-router-dom';
 import Share from './share';
-
 
 const logoutFunction = () => {
   console.log('removing token');

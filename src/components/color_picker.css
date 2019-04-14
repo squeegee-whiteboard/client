@@ -3,3 +3,8 @@
     height: 30px;
     border-radius: 5px;
 }
+
+.chrome-picker{
+    position: absolute;
+    width: available;
+}

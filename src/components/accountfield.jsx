@@ -45,6 +45,7 @@ class AccountField extends React.Component {
     }
 
     this.setState({ active: false, currentVal, resetVal: currentVal });
+
   }
 
   render() {

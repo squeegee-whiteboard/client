@@ -35,14 +35,15 @@ class DrawingSettings extends BaseSettings {
     const { toolSettings: { drawingSettings } } = this.props;
     return (
       <>
-        <ColorPicker
-          initialColor={drawingSettings.color}
-          onChange={this.changeColor}
-        />
         <WidthSlider
           initialWidth={drawingSettings.width}
           onChange={this.changeWidth}
         />
+        <ColorPicker
+          initialColor={drawingSettings.color}
+          onChange={this.changeColor}
+        />
+
       </>
     );
   }

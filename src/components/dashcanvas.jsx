@@ -12,6 +12,7 @@ function DashCanvas(props) {
         <span className="card-title activator grey-text text-darken-4 center">
             {title}
           <i className="material-icons right">more_vert</i>
+
         </span>
       </div>
       <div className="card-reveal">
@@ -37,6 +38,7 @@ function DashCanvas(props) {
         </div>
       </div>
     </div>
+
   );
 }
 
