@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput } from 'react-materialize';
+import { TextInput, Button } from 'react-materialize';
 import { auth } from '../api';
 import './login-signup.css';
 
@@ -15,7 +15,7 @@ class Signup extends React.Component {
       // formErrors: { email: '', password: '' },
       // emailValid: false,
       // passwordValid: false,
-      formValid: false,
+      // formValid: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -31,11 +31,16 @@ class Signup extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    const { email, username, password, formValid } = this.state;
+    const {
+      email,
+      username,
+      password,
+      // formValid,
+    } = this.state;
 
-    if (!formValid) {
-      return;
-    }
+    // if (!formValid) {
+    //   return;
+    // }
 
     auth.register(email, username, password).then((result) => {
       const { success } = result;
@@ -43,11 +48,14 @@ class Signup extends React.Component {
       if (!success) {
         // TODO: error
         console.log("error signing up");
+        console.log(result.error);
         return;
       }
 
       const { token } = result;
       localStorage.setItem('JWT', token);
+
+      this.history.push('/dashboard');
     });
   }
 
@@ -59,7 +67,7 @@ class Signup extends React.Component {
       confirm,
       // formErrors,
       // passwordValid,
-      formValid,
+      // formValid,
     } = this.state;
     // TODO: More validation
     return (
@@ -107,12 +115,12 @@ class Signup extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <input
+          <Button
             type="submit"
-            className="btn btn-primary"
-            id="signup-button"
-            value="Create Account"
-          />
+            waves="light"
+          >
+            Create Account
+          </Button>
         </form>
       </div>
     );
