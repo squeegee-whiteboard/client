@@ -11,7 +11,7 @@ import Account from './account';
 import Login from './login';
 import Signup from './signup';
 import Nav from '../components/nav';
-import PrivateRoute from '../components/private_route';
+import { PrivateRoute, NoLoginRoute } from '../components/redirect_routes';
 
 function App() {
   return (
@@ -19,8 +19,8 @@ function App() {
       <Route path={['/whiteboard/:id', '/dashboard', '/account']} component={Nav} />
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <NoLoginRoute path="/login" component={Login} />
+        <NoLoginRoute path="/signup" component={Signup} />
         <PrivateRoute path="/account" component={Account} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/whiteboard/:id" component={Whiteboard} />
