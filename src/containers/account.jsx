@@ -4,6 +4,9 @@ import './account.css';
 import '../components/accountfield.css';
 
 function Account() {
+
+  // Was still hoping to implement some quick client-side password matching using something like https://codepen.io/diegoleme/pen/surIK
+
   return (
     <div className="account">
       <h5>Your Account</h5>
@@ -23,15 +26,15 @@ function Account() {
             <hr />
             <label id="oldpasswordlabel" htmlFor="old_password_box">
               <span>Old password:</span>
-              <input type="password" name="oldPassword" id="old_password_box" />
+              <input type="password" name="oldPassword" id="old_password_box" required />
             </label>
             <label id="confirmpasswordlabel" htmlFor="old_password_2_box">
               <span>Confirm old password:</span>
-              <input type="password" name="oldPassword2" id="old_password_2_box" />
+              <input type="password" name="oldPassword2" id="old_password_2_box" required />
             </label>
             <label id="newpasswordlabel" htmlFor="new_password_box">
               <span>New password:</span>
-              <input type="password" name="newPassword" id="new_password_box" />
+              <input type="password" name="newPassword" id="new_password_box" required />
             </label>
             <button type="submit" className="waves-effect waves-light btn-small float-right">Update</button>
           </form>

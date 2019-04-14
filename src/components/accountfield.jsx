@@ -43,7 +43,7 @@ class AccountField extends React.Component {
           {/* Only render "Edit" link if the field's inactive. */}
           {!active && <button className="waves-effect waves-light btn-small float-right blue" type="button" onClick={this.toggleActivity}>Edit</button>}
         </div>
-        <input type={type} name={name} id={`${name}_box`} value={currentVal} onChange={this.updateVal} disabled={!active} />
+        <input type={type} name={name} id={`${name}_box`} value={currentVal} onChange={this.updateVal} disabled={!active} required />
         {/* Only render buttons if the field's inactive. */}
         {active
             && (
