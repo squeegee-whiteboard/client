@@ -3,41 +3,27 @@ import {
   HashRouter as Router,
   Switch,
   Route,
-  // Redirect,
+  Redirect,
 } from 'react-router-dom';
 import Whiteboard from './whiteboard';
 import Dashboard from './dashboard';
-
+import Account from './account';
 import Login from './login';
 import Signup from './signup';
-import './login-signup.css';
-
 import Nav from '../components/nav';
-
-// function WhiteboardRedirect() {
-//   return (
-//     <Redirect to="/whiteboard/1" />
-//   );
-// }
-
-// function DashboardRedirect() {
-//   return (
-//     <Redirect to="/dashboard" />
-//   );
-// }
+import PrivateRoute from '../components/private_route';
 
 function App() {
   return (
     <Router>
-      <nav className="navbar">
-        <Nav />
-      </nav>
+      <Route path={['/whiteboard/:id', '/dashboard', '/account']} component={Nav} />
       <Switch>
-        {/* <Route exact path="/" component={DashboardRedirect} />  */}
+        <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/whiteboard/:id" component={Whiteboard} />
+        <PrivateRoute path="/account" component={Account} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/whiteboard/:id" component={Whiteboard} />
       </Switch>
     </Router>
   );

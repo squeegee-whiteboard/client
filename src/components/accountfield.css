@@ -1,0 +1,29 @@
+form.account-change-form{
+    margin-top: 1em;
+}
+
+label.icon-label{
+    color: black;
+}
+
+.icon-label > * {
+    vertical-align: middle;
+}
+.icon-label > button{
+    margin-top: 0.75em;
+}
+
+.field-header{
+    font-weight: bold;
+    font-size: 2em;
+    margin-left: 10px;
+}
+
+.float-right{
+    float: right;
+    position: relative;
+}
+
+button.btn-paired{
+    margin-left: 10px;
+}
