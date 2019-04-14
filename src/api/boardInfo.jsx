@@ -53,8 +53,38 @@ async function member(authToken) {
   return responseData;
 }
 
+// Sends a GET request to the /boardInfo/isMember endpoint on the API server
+// Requires user's auth token
+async function isMember(authToken, boardId) {
+  let responseData = {};
+
+  try {
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/boardInfo/isMember`;
+    const payload = {
+      board_id: boardId,
+    };
+    const settings = {
+      headers: {
+        Authorization: authToken,
+      },
+    };
+
+    const response = await axios.get(address, payload, settings);
+
+    responseData = response.data;
+  } catch (error) {
+    responseData = {
+      success: false,
+      message: 'Error contacting API server.',
+    };
+  }
+
+  return responseData;
+}
+
 
 export {
   owned,
   member,
+  isMember,
 };
