@@ -62,7 +62,7 @@ async function email(authToken, newEmail) {
 // Sends a PATCH request to the /changeUser/password endpoint on the API server
 // Requires user's auth token
 async function password(authToken, oldPassword, newPassword) {
-  console.log("Password function is getting called!");
+  // console.log("Password function is getting called!");
   let responseData = {};
 
   try {

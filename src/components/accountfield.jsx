@@ -3,7 +3,8 @@ import React from 'react';
 // import { DrawingSettings, EraserSettings } from './tool_settings';
 import './accountfield.css';
 import PropTypes from 'prop-types';
-import auth from '../api/auth';
+import { changeUser } from '../api';
+
 
 class AccountField extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class AccountField extends React.Component {
     };
     this.toggleActivity = this.toggleActivity.bind(this);
     this.updateVal = this.updateVal.bind(this);
+    this.changeUserInfo = this.changeUserInfo.bind(this);
   }
 
   toggleActivity() {
@@ -31,13 +33,23 @@ class AccountField extends React.Component {
     }
   }
 
+  changeUserInfo(e){
+    e.preventDefault(); // Prevents navigation away from page.
+    const { currentVal } = this.state;
+    const { name } = this.props;
+    if (name === "email")
+      changeUser.email(localStorage.getItem('JWT'), currentVal).then((result) => {console.log(result);});
+    else if (name === "username")
+      changeUser.username(localStorage.getItem('JWT'), currentVal).then((result) => {console.log(result);});
+  }
+
   render() {
     const { currentVal, active } = this.state;
     const {
       displayname, name, type, icon,
     } = this.props;
     return (
-      <form className="account-change-form" id={`new_${name}_form`} action={`/changeUser/${name}`} acceptCharset="UTF-8" method="patch">
+      <form className="account-change-form" id={`new_${name}_form`} onSubmit={this.changeUserInfo} acceptCharset="UTF-8">
         <div className="icon-label">
           <i className="material-icons">{icon}</i>
           <span className="field-header">{`${displayname}:`}</span>

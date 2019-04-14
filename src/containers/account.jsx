@@ -19,13 +19,10 @@ class Account extends React.Component {
 
   handleInputChange(e) {
     let { oldPassword, oldPassword2 } = this.state;
-    console.log(e.target.name);
-    console.log(e.target.value);
     this.setState({ [e.target.name]: e.target.value });
     if (e.target.name == 'oldPassword') oldPassword = e.target.value;
     else if (e.target.name == 'oldPassword2') oldPassword2 = e.target.value;
     if (oldPassword !== oldPassword2) {
-      console.log("They don't match!");
       document.getElementById('old_password_2_box').setCustomValidity("Passwords don't match!");
       document.getElementById('old_password_2_box').classList.add('invalid');
     } else {
@@ -36,7 +33,6 @@ class Account extends React.Component {
 
   changePassword(e) {
     e.preventDefault(); // Prevents navigation away from page.
-    console.log("Getting called");
     const { oldPassword, newPassword } = this.state;
     changeUser.password(localStorage.getItem('JWT'), oldPassword, newPassword).then((result) => {console.log(result);});
   }
@@ -47,7 +43,7 @@ class Account extends React.Component {
         <h5>Your Account</h5>
         <div className="row">
           <div className="col m12 s12">
-            <AccountField type="text" displayname="Username" name="Username" val="getFromServerPls" icon="person" />
+            <AccountField type="text" displayname="Username" name="username" val="getFromServerPls" icon="person" />
           </div>
           <div className="col m12 s12">
             <AccountField type="email" displayname="Email" name="email" val="getFromServerPls" icon="email" />
