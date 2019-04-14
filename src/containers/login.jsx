@@ -37,7 +37,7 @@ class Login extends React.Component {
     if (!email || !password) {
       errorMsg = 'All fields must be filled in!';
     }
-    
+
     this.setState({ formErrors: errorMsg });
     if (errorMsg) {
       return;
@@ -74,6 +74,10 @@ class Login extends React.Component {
           <form className="form-inline" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <TextInput
+                  style=
+                      {{
+                        color : "white"
+                      }}
                 email
                 validate
                 icon="email"
@@ -85,6 +89,10 @@ class Login extends React.Component {
             </div>
             <div className="form-group">
               <TextInput
+                  style=
+                      {{
+                        color : "white"
+                      }}
                 password
                 icon="vpn_key"
                 label="Password"

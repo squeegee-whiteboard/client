@@ -83,6 +83,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: #1F2833;
 }
 
 .Signup h1 {
@@ -106,4 +107,8 @@
 
 #signup-button  {
   margin-top: 10px;
+}
+
+TextInput{
+  color: white;
 }
