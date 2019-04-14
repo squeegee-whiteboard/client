@@ -1,5 +1,6 @@
 import './tool_settings.css';
 import React from 'react';
+import update from 'immutability-helper';
 import ColorPicker from '../color_picker';
 import WidthSlider from '../width_slider';
 import BaseSettings from './base_settings';
@@ -10,27 +11,23 @@ class DrawingSettings extends BaseSettings {
     super(props);
 
     this.toolId = DrawingTool.TOOL_ID;
+    this.changeColor = this.changeColor.bind(this);
+    this.changeWidth = this.changeWidth.bind(this);
   }
 
   changeColor(color) {
     const { toolSettings, updateSettings } = this.props;
-    const { drawingSettings } = toolSettings;
-    const newSettings = Object.assign({}, toolSettings);
-    newSettings.drawingSettings = {
-      width: drawingSettings.width,
-      color: color.rgb,
-    };
+    const newSettings = update(toolSettings, {
+      drawingSettings: { color: { $set: color.rgb } },
+    });
     updateSettings(newSettings);
   }
 
   changeWidth(width) {
     const { toolSettings, updateSettings } = this.props;
-    const { drawingSettings } = toolSettings;
-    const newSettings = Object.assign({}, toolSettings);
-    newSettings.drawingSettings = {
-      color: drawingSettings.color,
-      width,
-    };
+    const newSettings = update(toolSettings, {
+      drawingSettings: { width: { $set: width } },
+    });
     updateSettings(newSettings);
   }
 
@@ -40,11 +37,11 @@ class DrawingSettings extends BaseSettings {
       <>
         <ColorPicker
           initialColor={drawingSettings.color}
-          onChange={color => this.changeColor(color)}
+          onChange={this.changeColor}
         />
         <WidthSlider
           initialWidth={drawingSettings.width}
-          onChange={width => this.changeWidth(width)}
+          onChange={this.changeWidth}
         />
       </>
     );

@@ -30,7 +30,7 @@ class BaseTool extends React.Component {
       <Button
         className={`waves-effect waves-light btn-small ${buttonSelected ? ' selected' : ''}`}
         type="button"
-        onClick={() => this.onClick()}
+        onClick={this.onClick}
       >
         {this.toolText}
       </Button>
