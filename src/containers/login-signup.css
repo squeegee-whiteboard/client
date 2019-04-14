@@ -6,6 +6,10 @@
   background-color: black;
 } */
 
+.login-signup-error {
+  color: red;
+}
+
 .login {
   width: 280px;
   position: absolute;

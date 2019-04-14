@@ -15,6 +15,7 @@ import PrivateRoute from '../components/private_route';
 
 function App() {
   return (
+    // console.log(path);
     <Router>
       <Route path={['/whiteboard/:id', '/dashboard', '/account']} component={Nav} />
       <Switch>

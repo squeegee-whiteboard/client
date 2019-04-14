@@ -33,14 +33,18 @@ class AccountField extends React.Component {
     }
   }
 
-  changeUserInfo(e){
+  changeUserInfo(e) {
     e.preventDefault(); // Prevents navigation away from page.
     const { currentVal } = this.state;
     const { name } = this.props;
-    if (name === "email")
-      changeUser.email(localStorage.getItem('JWT'), currentVal).then((result) => {console.log(result);});
-    else if (name === "username")
-      changeUser.username(localStorage.getItem('JWT'), currentVal).then((result) => {console.log(result);});
+    if (name === 'email') {
+      changeUser.email(localStorage.getItem('JWT'), currentVal).then((result) => { console.log(result); });
+    }
+    else if (name === 'username') {
+      changeUser.username(localStorage.getItem('JWT'), currentVal).then((result) => { console.log(result); });
+    }
+
+    this.setState({ active: false, currentVal, resetVal: currentVal });
   }
 
   render() {
