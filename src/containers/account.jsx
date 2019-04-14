@@ -9,8 +9,8 @@ class Account extends React.Component {
     super();
     this.state = {
       oldPassword: '',
-      oldPassword2: '',
       newPassword: '',
+      newPassword2: '',
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -18,16 +18,16 @@ class Account extends React.Component {
   }
 
   handleInputChange(e) {
-    let { oldPassword, oldPassword2 } = this.state;
+    let { newPassword, newPassword2 } = this.state;
     this.setState({ [e.target.name]: e.target.value });
-    if (e.target.name == 'oldPassword') oldPassword = e.target.value;
-    else if (e.target.name == 'oldPassword2') oldPassword2 = e.target.value;
-    if (oldPassword !== oldPassword2) {
-      document.getElementById('old_password_2_box').setCustomValidity("Passwords don't match!");
-      document.getElementById('old_password_2_box').classList.add('invalid');
+    if (e.target.name == 'newPassword') newPassword = e.target.value;
+    else if (e.target.name == 'newPassword2') newPassword2 = e.target.value;
+    if (newPassword !== newPassword2) {
+      document.getElementById('new_password_2_box').setCustomValidity("Passwords don't match!");
+      document.getElementById('new_password_2_box').classList.add('invalid');
     } else {
-      document.getElementById('old_password_2_box').classList.remove('invalid');
-      document.getElementById('old_password_2_box').setCustomValidity('');
+      document.getElementById('new_password_2_box').classList.remove('invalid');
+      document.getElementById('new_password_2_box').setCustomValidity('');
     }
   }
 
@@ -59,13 +59,13 @@ class Account extends React.Component {
                 <span>Old password:</span>
                 <input type="password" name="oldPassword" id="old_password_box" onChange={this.handleInputChange} required />
               </label>
-              <label id="confirmpasswordlabel" htmlFor="old_password_2_box">
-                <span>Confirm old password:</span>
-                <input type="password" name="oldPassword2" id="old_password_2_box" onChange={this.handleInputChange} required />
-              </label>
               <label id="newpasswordlabel" htmlFor="new_password_box">
                 <span>New password:</span>
                 <input type="password" name="newPassword" id="new_password_box" onChange={this.handleInputChange} required />
+              </label>
+              <label id="confirmpasswordlabel" htmlFor="new_password_2_box">
+                <span>Confirm new password:</span>
+                <input type="password" name="newPassword2" id="new_password_2_box" onChange={this.handleInputChange} required />
               </label>
               <button type="submit" className="waves-effect waves-light btn-small float-right">Update</button>
             </form>

@@ -16,7 +16,7 @@ import Nav from '../components/nav';
 function App() {
   return (
     <Router>
-      <Route path={['/whiteboard/:id', '/dashboard']} component={Nav} />
+      <Route path={['/whiteboard/:id', '/dashboard', '/account']} component={Nav} />
       <Switch>
         <Route exact path="/" render={() => <Redirect to="/dashboard" />} />
         <Route path="/dashboard" component={Dashboard} />
