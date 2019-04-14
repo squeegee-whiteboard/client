@@ -31,6 +31,7 @@ function arrayComp(a1, a2, comp) {
   return true;
 }
 
+// Add a new path from the given JSON to the paper project
 function newPath(pathJSON) {
   const layer = project.activeLayer;
   const path = Path.importJSON(pathJSON);
@@ -73,6 +74,11 @@ function removePaths(pathJSONList) {
   });
 }
 
+// Loads the given JSON dump into the current paper scope
+function loadBoard(boardJSON) {
+  project.importJSON(boardJSON);
+}
+
 class Board extends React.Component {
   componentDidMount() {
     paper.setup('whiteboard');
@@ -81,6 +87,7 @@ class Board extends React.Component {
     const { socket } = this.props;
     socket.on('new_path', newPath);
     socket.on('removed_paths', removePaths);
+    socket.on('board_dump', loadBoard);
   }
 
   render() {

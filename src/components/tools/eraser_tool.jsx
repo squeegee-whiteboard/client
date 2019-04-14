@@ -58,7 +58,7 @@ class EraserTool extends BaseTool {
 
       // Only broadcast if we actually removed something
       if (pathJSONList.length > 0) {
-        socket.emit('removed_items', pathJSONList);
+        socket.emit('removed_paths', pathJSONList);
       }
     };
   }

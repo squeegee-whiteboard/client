@@ -7,6 +7,12 @@ import Toolbox from '../components/toolbox';
 import apiConfig from '../../config/apiConfig';
 import './whiteboard.css';
 
+// TODO: loading board workflow
+// 1. Check if member of board, if yes continue to board
+// 2. If not member of board, try to add self to member of board, if success continue to
+//    board
+// 3. If failed to add member of board, redirect to dashboard with board does not exist
+//    error
 class Whiteboard extends React.Component {
   constructor(props) {
     super(props);
