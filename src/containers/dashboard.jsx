@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
     const { boards } = this.state;
     const boardList = boards.map((b) => {
       return (
-        <div className = 'col m4'>
+        <div className = 'col m4' key={b.board_id}>
           <DashCanvas title={b.board_name} />
         </div>
       );
