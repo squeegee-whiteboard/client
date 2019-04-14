@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tool, Path } from 'paper';
-import {Button} from 'react-materialize';
+import { Button } from 'react-materialize';
 
 class DrawingTool extends React.Component {
   constructor() {

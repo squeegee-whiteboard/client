@@ -5,7 +5,7 @@ import {
   Path,
   Tool,
 } from 'paper';
-import {Button} from 'react-materialize';
+import { Button } from 'react-materialize';
 
 class EraserTool extends React.Component {
   constructor() {
