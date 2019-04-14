@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Tool } from 'paper';
+import { Button } from 'react-materialize';
 
 class BaseTool extends React.Component {
   constructor(props) {
@@ -26,13 +27,13 @@ class BaseTool extends React.Component {
     }
 
     return (
-      <button
+      <Button
         className={`waves-effect waves-light btn-small ${buttonSelected ? ' selected' : ''}`}
         type="button"
         onClick={() => this.onClick()}
       >
         {this.toolText}
-      </button>
+      </Button>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../index.css';
 import './nav.css';
-import { Dropdown, Divider} from 'react-materialize';
+import { Dropdown, Divider } from 'react-materialize';
 import {
   Route,
 } from 'react-router-dom';

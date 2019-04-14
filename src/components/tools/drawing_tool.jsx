@@ -1,14 +1,5 @@
-<<<<<<< HEAD
-import React from 'react';
-import { Tool, Path } from 'paper';
-import {Button} from 'react-materialize';
-||||||| merged common ancestors
-import React from 'react';
-import { Tool, Path } from 'paper';
-=======
 import { Path } from 'paper';
 import BaseTool from './base_tool';
->>>>>>> Hook tools and settings up to react
 
 class DrawingTool extends BaseTool {
   constructor(props) {

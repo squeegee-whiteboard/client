@@ -3,12 +3,7 @@ import {
   Color,
   Path,
 } from 'paper';
-<<<<<<< HEAD
-import {Button} from 'react-materialize';
-||||||| merged common ancestors
-=======
 import BaseTool from './base_tool';
->>>>>>> Hook tools and settings up to react
 
 class EraserTool extends BaseTool {
   constructor(props) {
