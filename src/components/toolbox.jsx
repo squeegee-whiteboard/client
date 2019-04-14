@@ -4,8 +4,6 @@ import { DrawingSettings, EraserSettings } from './tool_settings';
 import './toolbox.css';
 
 class Toolbox extends React.Component {
-<<<<<<< HEAD
-=======
   constructor(props) {
     super(props);
 
@@ -29,20 +27,11 @@ class Toolbox extends React.Component {
     this.setState({ toolSettings });
   }
 
->>>>>>> 238d4d7b113753836528ad6df14cffdd821a1b3d
   render() {
     const { selectedTool, toolSettings } = this.state;
     return (
       <div className="toolbox">
         <div className="tools">
-<<<<<<< HEAD
-          <DrawingTool />
-          <EraserTool />
-        </div>
-        <div className="tool-settings">
-          <DrawingSettings />
-          <EraserSettings />
-=======
           <DrawingTool
             selectedTool={selectedTool}
             toolSettings={toolSettings}
@@ -65,7 +54,6 @@ class Toolbox extends React.Component {
             toolSettings={toolSettings}
             updateSettings={this.updateSettings}
           />
->>>>>>> 238d4d7b113753836528ad6df14cffdd821a1b3d
         </div>
       </div>
     );

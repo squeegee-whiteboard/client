@@ -3,11 +3,7 @@ import {
   Color,
   Path,
 } from 'paper';
-<<<<<<< HEAD
-import { Button } from 'react-materialize';
-=======
 import BaseTool from './base_tool';
->>>>>>> 238d4d7b113753836528ad6df14cffdd821a1b3d
 
 // TODO: Make erasing nicer (hit detection is still weird)
 class EraserTool extends BaseTool {

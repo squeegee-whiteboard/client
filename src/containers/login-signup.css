@@ -1,17 +1,11 @@
 @import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 
-
-<<<<<<< HEAD
-body  {
+/*body  {
   margin: 0;
   padding: 0;
   background-color: black;
-  /* background: #ffffff;
-  background-image: url("test.jpg"); */
-}
+} */
 
-=======
->>>>>>> 238d4d7b113753836528ad6df14cffdd821a1b3d
 .login {
   width: 280px;
   position: absolute;
