@@ -5,7 +5,6 @@ import {
 } from 'paper';
 import BaseTool from './base_tool';
 
-// TODO: Make erasing nicer (hit detection is still weird)
 class EraserTool extends BaseTool {
   constructor(props) {
     super(props);
@@ -13,16 +12,15 @@ class EraserTool extends BaseTool {
     this.toolText = 'Erase';
     this.toolId = EraserTool.TOOL_ID;
 
+    // TODO: Investigate hit test not doing anything
+    // TODO: Improve eraser hit detection
     // Create the eraser tool
-    this.removeList = [];
+    // this.removeList = [];
 
     // Get all of the intersections with the erase tool, remove any path that the
     // eraser path intersects with.
     this.tool.onMouseDown = (event) => {
-      const { toolSettings } = this.props;
-      const eraserSettings = toolSettings.eraserSettings || {
-        width: 5,
-      };
+      const { toolSettings: { eraserSettings } } = this.props;
 
       this.path = new Path();
       this.path.strokeColor = new Color(0, 0, 0, 0.5);
@@ -36,11 +34,12 @@ class EraserTool extends BaseTool {
     this.tool.onMouseDrag = (event) => {
       this.path.add(event.point);
 
+      // TODO: Remove this if we remove hit testing for real
       // Tests if we've collided with a stroke with our eraser
-      const hitObj = project.hitTest(event.point, { stroke: true });
-      if (hitObj) {
-        this.removeList.push(hitObj.item);
-      }
+      // const hitObj = project.hitTest(event.point, { stroke: true });
+      // if (hitObj) {
+      //   this.removeList.push(hitObj.item);
+      // }
     };
 
     // Remove the items in the removelist on mouse up
@@ -48,9 +47,19 @@ class EraserTool extends BaseTool {
       const items = project.activeLayer.getItems();
       const intersections = items.filter(item => this.path.intersects(item));
       intersections.forEach(item => item.remove());
-      this.removeList.forEach(item => item.remove());
-      this.removeList = [];
       this.path.remove();
+
+      // TODO: remove this if we remove hit testing for real
+      // this.removeList.forEach(item => item.remove());
+      // this.removeList = [];
+
+      const { socket } = this.props;
+      const pathJSONList = intersections.map(path => path.exportJSON());
+
+      // Only broadcast if we actually removed something
+      if (pathJSONList.length > 0) {
+        socket.emit('removed_items', pathJSONList);
+      }
     };
   }
 }

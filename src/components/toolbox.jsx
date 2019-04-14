@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { DrawingTool, EraserTool } from './tools';
 import { DrawingSettings, EraserSettings } from './tool_settings';
 import './toolbox.css';
@@ -29,6 +30,7 @@ class Toolbox extends React.Component {
 
   render() {
     const { selectedTool, toolSettings } = this.state;
+    const { socket } = this.props;
     return (
       <div className="toolbox">
         <div className="tools">
@@ -36,11 +38,13 @@ class Toolbox extends React.Component {
             selectedTool={selectedTool}
             toolSettings={toolSettings}
             selectTool={this.selectTool}
+            socket={socket}
           />
           <EraserTool
             selectedTool={selectedTool}
             toolSettings={toolSettings}
             selectTool={this.selectTool}
+            socket={socket}
           />
         </div>
         <div className="tool-settings">
@@ -59,5 +63,11 @@ class Toolbox extends React.Component {
     );
   }
 }
+
+Toolbox.propTypes = {
+  socket: PropTypes.shape({
+    emit: PropTypes.func,
+  }).isRequired,
+};
 
 export default Toolbox;

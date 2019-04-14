@@ -5,3 +5,10 @@
     flex-grow: 1;
     overflow: hidden;
 }
+
+.whiteboard-preload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
