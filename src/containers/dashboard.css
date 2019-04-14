@@ -1,4 +1,9 @@
 h5{
-    color:rgb(114, 113, 113);
+    color:white;
     padding-left:15px;
+}
+
+.dashboard{
+    background-color: #f9f9f9;
+    height: 100%;
 }

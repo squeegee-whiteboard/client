@@ -1,8 +1,9 @@
-
 a{
     margin: 5px;
 }
-
+.nav-wrapper{
+    background-color: #1F2833;
+}
 #person-icon{
     margin-left:30px;
     margin-right:30px;
@@ -11,5 +12,7 @@ a{
 
 #logo{
     margin-left:40px;
+    color: white;
 }
+
 

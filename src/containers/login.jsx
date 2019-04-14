@@ -13,9 +13,6 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      // formErrors: { email: '', password: '' },
-      // emailValid: false,
-      // formValid: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -45,7 +42,9 @@ class Login extends React.Component {
       const { success } = result;
 
       if (!success) {
+
         // TODO: error feedback
+
         console.log('error logging in');
         console.log(result.error);
         return;
@@ -64,38 +63,40 @@ class Login extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div className="login">
-        <h1>Squeegee</h1>
-        <form className="form-inline" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <TextInput
-              email
-              validate
-              icon="email"
-              label="Email"
-              name="email"
-              value={email}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <TextInput
-              password
-              icon="vpn_key"
-              label="Password"
-              name="password"
-              value={password}
-              onChange={this.handleChange}
-            />
-          </div>
-          <p>Forgot Password?</p>
-          <Button type="submit" waves="light">
+      <div className="page-container">
+        <div className="login">
+          <h1>Squeegee</h1>
+          <form className="form-inline" onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <TextInput
+                email
+                validate
+                icon="email"
+                label="Email"
+                name="email"
+                value={email}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <TextInput
+                password
+                icon="vpn_key"
+                label="Password"
+                name="password"
+                value={password}
+                onChange={this.handleChange}
+              />
+            </div>
+            <p>Forgot Password?</p>
+            <Button type="submit" waves="light">
             Login
-          </Button>
-          <Link className="btn" to="/signup">
+            </Button>
+            <Link className="btn" to="/signup">
             Create New Account
-          </Link>
-        </form>
+            </Link>
+          </form>
+        </div>
       </div>
     );
   }
