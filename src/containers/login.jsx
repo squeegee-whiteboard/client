@@ -1,4 +1,5 @@
 import React from 'react';
+
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { TextInput, Button } from 'react-materialize';
@@ -13,6 +14,10 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
+      formErrors: '',
+      // emailValid: false,
+      // formValid: false,
+
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -27,24 +32,21 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
-    const {
-      email,
-      password,
-      // formValid,
-    } = this.state;
-
-    // if (!formValid) {
-    //   return;
-    // }
+    const { email, password } = this.state;
+    let errorMsg = '';
+    if (!email || !password) {
+      errorMsg = 'All fields must be filled in!';
+    }
+    
+    this.setState({ formErrors: errorMsg });
+    if (errorMsg) {
+      return;
+    }
 
     auth.login(email, password).then((result) => {
       const { success } = result;
 
       if (!success) {
-
-        // TODO: error feedback
-
         console.log('error logging in');
         console.log(result.error);
         return;
@@ -52,6 +54,7 @@ class Login extends React.Component {
 
       const { token } = result;
       localStorage.setItem('JWT', token);
+
 
       // TODO: feedback
       console.log('successful signup');
@@ -61,11 +64,13 @@ class Login extends React.Component {
   }
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, formErrors, loggedIn } = this.state;
+    if (loggedIn) return <Redirect to="/" />;
     return (
       <div className="page-container">
         <div className="login">
           <h1>Squeegee</h1>
+          {!!formErrors && <span className="login-signup-error">{formErrors}</span>}
           <form className="form-inline" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <TextInput

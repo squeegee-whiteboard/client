@@ -4,6 +4,7 @@ import { TextInput, Button } from 'react-materialize';
 import { auth } from '../api';
 import './login-signup.css';
 
+
 class Signup extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +14,7 @@ class Signup extends React.Component {
       username: '',
       password: '',
       confirm: '',
+      formErrors: '',
       // formErrors: { email: '', password: '' },
       // emailValid: false,
       // passwordValid: false,
@@ -24,9 +26,21 @@ class Signup extends React.Component {
   }
 
   handleChange(event) {
+    let { password, confirm } = this.state;
+
     this.setState({
       [event.target.name]: event.target.value,
     });
+
+    if (event.target.name == 'password') password = event.target.value;
+    else if (event.target.name == 'confirm') confirm = event.target.value;
+    if (password !== confirm) {
+      document.getElementById('confirm_password_box').setCustomValidity("Passwords don't match!");
+      document.getElementById('confirm_password_box').classList.add('invalid');
+    } else {
+      document.getElementById('confirm_password_box').classList.remove('invalid');
+      document.getElementById('confirm_password_box').setCustomValidity('');
+    }
   }
 
   handleSubmit(event) {
@@ -39,11 +53,19 @@ class Signup extends React.Component {
       // formValid,
     } = this.state;
 
-    // if (!formValid) {
-    //   return;
-    // }
+    let errorMsg = '';
+    if (!email || !password || !username) {
+      errorMsg = 'All fields must be filled in!';
+    }
+    
+    this.setState({ formErrors: errorMsg });
+    if (errorMsg) {
+      return;
+    }
+    console.log("Get here");
 
     auth.register(email, username, password).then((result) => {
+      console.log("This finishes...");
       const { success } = result;
 
       if (!success) {
@@ -54,7 +76,9 @@ class Signup extends React.Component {
       }
 
       const { token } = result;
+      console.log("Setting token...");
       localStorage.setItem('JWT', token);
+
 
       // TODO: feedback
       console.log('successful signup');
@@ -69,17 +93,22 @@ class Signup extends React.Component {
       username,
       password,
       confirm,
+      formErrors,
+      loggedIn,
       // formErrors,
       // passwordValid,
       // formValid,
     } = this.state;
     // TODO: More validation
+    if (loggedIn) return <Redirect to="/" />; 
     return (
       <div className="Signup">
         <h1>Squeegee</h1>
+        {!!formErrors && <span className="login-signup-error">{formErrors}</span>}
         <form className="form-inline" onSubmit={this.handleSubmit}>
           <div className="form-group" id="signup-form">
             <TextInput
+              id="email_box"
               label="Email"
               icon="email"
               name="email"
@@ -88,42 +117,53 @@ class Signup extends React.Component {
               error="Invalid Email"
               value={email}
               onChange={this.handleChange}
+              required
+              aria-required="true"
             />
           </div>
           <div className="form-group" id="signup-form">
             <TextInput
+              id="username_box"
               label="Username"
               icon="account_circle"
               name="username"
               value={username}
               onChange={this.handleChange}
+              required
+              aria-required="true"
             />
           </div>
           <div className="form-group" id="signup-form">
             <TextInput
+              id="password_box"
               password
               label="Password"
               icon="vpn_key"
               name="password"
               value={password}
               onChange={this.handleChange}
+              required
+              aria-required="true"
             />
           </div>
           <div className="form-group" id="signup-form">
             <TextInput
+              id="confirm_password_box"
               password
               label="Confirm Password"
               icon="check_box"
               name="confirm"
               value={confirm}
               onChange={this.handleChange}
+              required
+              aria-required="true"
             />
           </div>
           <Button
             type="submit"
             waves="light"
           >
-            Create Account
+            {'Create Account'}
           </Button>
         </form>
       </div>

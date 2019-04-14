@@ -1,13 +1,18 @@
 import React from 'react';
 import './dashcanvas.css';
+import PropTypes from 'prop-types';
 
-function DashCanvas() {
+
+function DashCanvas(props) {
+  const { title } = props;
   return (
     <div className="card">
       <div className="card-content">
-        <span className="card-title activator grey-text text-darken-4 bottom" id="board-name-title">
-            Board Name
-          <i className="material-icons right" id="more-options-icon">more_vert</i>
+        <div className="whitespace" />
+        <span className="card-title activator grey-text text-darken-4 center">
+            {title}
+          <i className="material-icons right">more_vert</i>
+
         </span>
       </div>
       <div className="card-reveal">
@@ -36,4 +41,9 @@ function DashCanvas() {
 
   );
 }
+
+DashCanvas.propTypes = {
+  title: PropTypes.string.isRequired,
+};
+
 export default DashCanvas;
