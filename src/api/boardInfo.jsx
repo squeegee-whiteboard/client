@@ -89,4 +89,3 @@ const boardInfo = {
 };
 
 export default boardInfo;
-

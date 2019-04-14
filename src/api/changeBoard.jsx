@@ -128,4 +128,3 @@ const changeBoard = {
 };
 
 export default changeBoard;
-
