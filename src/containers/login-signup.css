@@ -1,14 +1,6 @@
 @import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 
 
-body  {
-  margin: 0;
-  padding: 0;
-  background-color: black !important;
-  /* background: #ffffff;
-  background-image: url("test.jpg"); */
-}
-
 .login {
   width: 280px;
   position: absolute;

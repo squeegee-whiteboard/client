@@ -5,6 +5,7 @@ import {
 } from 'paper';
 import BaseTool from './base_tool';
 
+// TODO: Make erasing nicer (hit detection is still weird)
 class EraserTool extends BaseTool {
   constructor(props) {
     super(props);

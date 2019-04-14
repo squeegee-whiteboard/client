@@ -1,4 +1,5 @@
 import React from 'react';
+import update from 'immutability-helper';
 import BaseSettings from './base_settings';
 import WidthSlider from '../width_slider';
 import { EraserTool } from '../tools';
@@ -8,14 +9,15 @@ class EraserSettings extends BaseSettings {
     super(props);
 
     this.toolId = EraserTool.TOOL_ID;
+
+    this.changeWidth = this.changeWidth.bind(this);
   }
 
   changeWidth(width) {
     const { toolSettings, updateSettings } = this.props;
-    const newSettings = Object.assign({}, toolSettings);
-    newSettings.eraserSettings = {
-      width,
-    };
+    const newSettings = update(toolSettings, {
+      eraserSettings: { width: { $set: width } },
+    });
     updateSettings(newSettings);
   }
 
@@ -25,7 +27,7 @@ class EraserSettings extends BaseSettings {
       <>
         <WidthSlider
           initialWidth={eraserSettings.width}
-          onChange={width => this.changeWidth(width)}
+          onChange={this.changeWidth}
         />
       </>
     );

@@ -4,8 +4,9 @@ import { DrawingSettings, EraserSettings } from './tool_settings';
 import './toolbox.css';
 
 class Toolbox extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
       selectedTool: DrawingTool.TOOL_ID,
       toolSettings: {
@@ -13,22 +14,17 @@ class Toolbox extends React.Component {
         eraserSettings: EraserSettings.DEFAULT,
       },
     };
+
+    this.selectTool = this.selectTool.bind(this);
+    this.updateSettings = this.updateSettings.bind(this);
   }
 
-  selectTool(toolId) {
-    const { toolSettings } = this.state;
-    this.setState({
-      selectedTool: toolId,
-      toolSettings,
-    });
+  selectTool(selectedTool) {
+    this.setState({ selectedTool });
   }
 
   updateSettings(toolSettings) {
-    const { selectedTool } = this.state;
-    this.setState({
-      selectedTool,
-      toolSettings,
-    });
+    this.setState({ toolSettings });
   }
 
   render() {
@@ -39,24 +35,24 @@ class Toolbox extends React.Component {
           <DrawingTool
             selectedTool={selectedTool}
             toolSettings={toolSettings}
-            selectTool={toolId => this.selectTool(toolId)}
+            selectTool={this.selectTool}
           />
           <EraserTool
             selectedTool={selectedTool}
             toolSettings={toolSettings}
-            selectTool={toolId => this.selectTool(toolId)}
+            selectTool={this.selectTool}
           />
         </div>
         <div className="tool-settings">
           <DrawingSettings
             selectedTool={selectedTool}
             toolSettings={toolSettings}
-            updateSettings={newSettings => this.updateSettings(newSettings)}
+            updateSettings={this.updateSettings}
           />
           <EraserSettings
             selectedTool={selectedTool}
             toolSettings={toolSettings}
-            updateSettings={newSettings => this.updateSettings(newSettings)}
+            updateSettings={this.updateSettings}
           />
         </div>
       </div>
