@@ -1,8 +1,5 @@
 /* TODO: CHANGE to fit the screen dynamically */
-.whitespace{
-    height: 300px;
-    width:  300px;
-}
+
 .menu-wrapper{
     background-color: #666869;
     color: white;
@@ -10,9 +7,11 @@
     vertical-align: center;
     margin-bottom: 0px;
     cursor: pointer;
+    overflow-y: hidden;
 }
-.material-icons{
+#more-options-icon{
     font-size: 37px;
+    color: #45A29E;
     margin-bottom:2px;
     margin-top:2px;
 }
@@ -31,3 +30,17 @@
 #close:hover{
     color: #b8bec2;
 }
+
+.card-content{
+    height: 400px;
+    width:  100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+#board-name-title{
+    position: absolute;
+    bottom: 0;
+}
+

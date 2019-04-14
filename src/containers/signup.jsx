@@ -47,7 +47,7 @@ class Signup extends React.Component {
 
       if (!success) {
         // TODO: error
-        console.log("error signing up");
+        console.log('error signing up');
         console.log(result.error);
         return;
       }

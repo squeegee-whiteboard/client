@@ -1,15 +1,21 @@
 /* TODO: CHANGE to fit the screen dynamically */
-.whitespace{
-    height: 300px;
-    width:  300px;
-}
+
 .btn-wrapper{
     width: 100%;
-    padding-left: 60%;
+    padding-left: 85%;
     padding-top: 45%;
 }
+.card-content-add-new{
+    height: 400px;
+    width:  100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
 .modal-content {
-    margin: 5% auto; 
-    width: 80%; 
-    color: #EBEBEB;
-} 
+    margin: 5% auto;
+    width: 80%;
+    color: black;
+}
+

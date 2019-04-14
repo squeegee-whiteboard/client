@@ -10,24 +10,24 @@ function Dashboard() {
         <h5>Your Whiteboards</h5>
       </div>
       <div className="row">
-        <div className="col m4">
+        <div className="col s12 m4">
           <DashAddNew />
         </div>
-        <div className="col m4">
+        <div className="col s12 m4">
           <DashCanvas />
         </div>
-        <div className="col m4">
+        <div className="col s12 m4">
           <DashCanvas />
         </div>
       </div>
       <div className="row">
-        <div className="col m4">
+        <div className="col s12 m4">
           <DashCanvas />
         </div>
-        <div className="col m4">
+        <div className="col s12 m4">
           <DashCanvas />
         </div>
-        <div className="col m4">
+        <div className="col s12 m4">
           <DashCanvas />
         </div>
       </div>

@@ -20,8 +20,8 @@ class Account extends React.Component {
   handleInputChange(e) {
     let { newPassword, newPassword2 } = this.state;
     this.setState({ [e.target.name]: e.target.value });
-    if (e.target.name == 'newPassword') newPassword = e.target.value;
-    else if (e.target.name == 'newPassword2') newPassword2 = e.target.value;
+    if (e.target.name === 'newPassword') newPassword = e.target.value;
+    else if (e.target.name === 'newPassword2') newPassword2 = e.target.value;
     if (newPassword !== newPassword2) {
       document.getElementById('new_password_2_box').setCustomValidity("Passwords don't match!");
       document.getElementById('new_password_2_box').classList.add('invalid');
@@ -34,7 +34,7 @@ class Account extends React.Component {
   changePassword(e) {
     e.preventDefault(); // Prevents navigation away from page.
     const { oldPassword, newPassword } = this.state;
-    changeUser.password(localStorage.getItem('JWT'), oldPassword, newPassword).then((result) => {console.log(result);});
+    changeUser.password(localStorage.getItem('JWT'), oldPassword, newPassword).then((result) => { console.log(result); });
   }
 
   render() {

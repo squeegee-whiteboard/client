@@ -1,9 +1,9 @@
 import React from 'react';
-import '../index.css';
 import './nav.css';
 import { Dropdown, Divider } from 'react-materialize';
 import {
   Route,
+  Link,
 } from 'react-router-dom';
 import Share from './share';
 
@@ -11,23 +11,23 @@ function Nav() {
   return (
     <>
       <nav>
-        <div className="nav-wrapper black">
-          <a href="" className="brand-logo" id="logo">Squeegee</a>
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
+        <div className="nav-wrapper">
+          <Link className="brand-logo left" id="logo" to="/dashboard">Squeegee</Link>
+          <ul id="nav-mobile" className="right">
             <li>
               <Route path="/whiteboard/:id" component={Share} />
             </li>
             <li>
               <Dropdown trigger={<i className="large material-icons" id="person-icon">person</i>}>
-                <a href="#">
+                <Link className="settings" to="/account">
                   <i className="material-icons">settings</i>
                   My Account
-                </a>
+                </Link>
                 <Divider />
-                <a href="#">
+                <Link className="logout" to="/login">
                   <i className="material-icons">exit_to_app</i>
                   Logout
-                </a>
+                </Link>
               </Dropdown>
             </li>
           </ul>

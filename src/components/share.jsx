@@ -6,7 +6,9 @@ import { Button } from 'react-materialize';
 
 function Share() {
   return (
+
     <Button className="waves-effect waves-light btn-small">Share</Button>
+
   );
 }
 export default Share;
