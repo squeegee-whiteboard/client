@@ -58,12 +58,15 @@ class DashCanvas extends React.Component {
     }
 
     this.setState({ title: newTitle });
-
+    const { socket } = this.props;
+    socket.emit('change_board');
   }
 
   deleteBoard() {
     this.setState({ existent: false });
     changeBoard.deleteBoard(localStorage.getItem('JWT'), this.props.boardId);
+    const { socket } = this.props;
+    socket.emit('change_board');
   }
 
 
@@ -112,6 +115,9 @@ class DashCanvas extends React.Component {
 DashCanvas.propTypes = {
   title: PropTypes.string.isRequired,
   boardId: PropTypes.string.isRequired,
+  socket: PropTypes.shape({
+    emit: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default DashCanvas;
