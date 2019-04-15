@@ -11,6 +11,7 @@ import Account from './account';
 import Login from './login';
 import Signup from './signup';
 import Nav from '../components/nav';
+import Errorpage from '../components/errorpage';
 import { PrivateRoute, NoLoginRoute } from '../components/redirect_routes';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <PrivateRoute path="/account" component={Account} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/whiteboard/:id" component={Whiteboard} />
+        <Route component={Errorpage} />
       </Switch>
     </Router>
   );

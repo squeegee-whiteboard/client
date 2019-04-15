@@ -1,12 +1,14 @@
 import React from 'react';
 import './errorpage.css';
+import lookingForMe from './404.png';
 
 function Errorpage() {
   return (
-  <div className="container">
-    <h1>404 Error Message</h1>
-    <h2>Page Not Found</h2>
-  </div>
+    <div className="container notfound">
+      <h1>404 Not Found</h1>
+      <h2>Were you looking for me?</h2>
+      <img alt="garbunjin" src={lookingForMe} />
+    </div>
   );
 }
 export default Errorpage;
