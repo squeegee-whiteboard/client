@@ -8,10 +8,9 @@ function DashCanvas(props) {
   return (
     <div className="card">
       <div className="card-content">
-        <div className="whitespace" />
-        <span className="card-title activator grey-text text-darken-4 center">
+        <span className="card-title activator grey-text text-darken-4 center" id="board-name-title">
             {title}
-          <i className="material-icons right">more_vert</i>
+          <i className="material-icons right" id="more-options-icon">more_vert</i>
 
         </span>
       </div>

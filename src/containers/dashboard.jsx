@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
     const { boards } = this.state;
     const boardList = boards.map((b) => {
       return (
-        <div className = 'col m4' key={b.board_id}>
+        <div className = 'col s12 m6 l4' key={b.board_id}>
           <DashCanvas title={b.board_name} />
         </div>
       );
@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
           <h5>Your Whiteboards</h5>
         </div>
         <div className="row">
-          <div className="col m4">
+          <div className="col s12 m6 l4">
             <DashAddNew />
           </div>
           {boardList}

@@ -63,7 +63,7 @@ class Nav extends React.Component {
         <nav>
           <div className="nav-wrapper">
             <a href="/" className="brand-logo" id="logo">Squeegee</a>
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <ul id="nav-mobile" className="right">
               <li>
                 <Route path="/whiteboard/:id" component={Share} />
               </li>
