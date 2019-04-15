@@ -1,8 +1,3 @@
-.board {
-    grid-column: 2 / 3;
-    background: white;
-}
-
 canvas[resize] {
     width: 100%;
     height: 100%;

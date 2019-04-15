@@ -13,12 +13,31 @@
     flex-grow: 1;
 }
 
+.toggle-mobile {
+    display: none !important;
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    width: 60px !important;
+    z-index: 20;
+}
+
+.board {
+    grid-column: 2 / 3;
+    background: white;
+}
+
 @media screen and (max-width: 800px) {
-    .whiteboard {
-        grid-template-columns: auto;
+    .board {
+        grid-column: 1 / 3;
+        background: white;
     }
 
-    .toolbox {
+    .mobile-hidden {
         display: none;
+    }
+
+    .toggle-mobile {
+        display: inline !important;
     }
 }

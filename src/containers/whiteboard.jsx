@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Preloader } from 'react-materialize';
+import { Preloader, Button } from 'react-materialize';
 import io from 'socket.io-client';
 import Board from '../components/board';
 import Toolbox from '../components/toolbox';
@@ -15,7 +15,11 @@ class Whiteboard extends React.Component {
     // Show a preloader until we're connected to the socket
     this.state = {
       mounted: false,
+      mobile: false,
+      mobileText: '>>',
     };
+
+    this.toggleMobile = this.toggleMobile.bind(this);
   }
 
   async componentDidMount() {
@@ -56,11 +60,29 @@ class Whiteboard extends React.Component {
     }
   }
 
+  toggleMobile() {
+    const { mobile } = this.state;
+    if (mobile) {
+      this.setState({
+        mobile: !mobile,
+        mobileText: '>>',
+      });
+    } else {
+      this.setState({
+        mobile: !mobile,
+        mobileText: '<<',
+      });
+    }
+  }
+
   render() {
     const { mounted } = this.state;
     return (mounted ? (
       <div className="whiteboard">
-        <Toolbox socket={this.socket} />
+        <Button className="toggle-mobile" type="button" onClick={this.toggleMobile}>
+          {this.state.mobileText}
+        </Button>
+        <Toolbox socket={this.socket} mobile={this.state.mobile} />
         <Board socket={this.socket} />
       </div>
     ) : (

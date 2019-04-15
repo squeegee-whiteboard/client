@@ -32,7 +32,7 @@ class Toolbox extends React.Component {
     const { selectedTool, toolSettings } = this.state;
     const { socket } = this.props;
     return (
-      <div className="toolbox">
+      <div className={`toolbox${this.props.mobile ? '' : ' mobile-hidden'}`}>
         <div className="tools">
           <PanTool
             selectedTool={selectedTool}
