@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BoardModule from './boardModule';
+
+import ShareModule from './shareModule';
 import { changeBoard } from '../api';
 import './dashcanvas.css';
+
 
 class DashCanvas extends React.Component {
   constructor(props) {
@@ -17,6 +20,14 @@ class DashCanvas extends React.Component {
         <p>Rename</p>
       </div>
     );
+    
+    const shareButton = (
+      <div className="option">
+        <i className="material-icons left">share</i>
+        <p>Share</p>
+      </div>
+    );
+
 
     const { boardId, title } = this.props;
 
@@ -26,11 +37,16 @@ class DashCanvas extends React.Component {
         button={renameButton}
         boardId={boardId}
       />,
+      shareModal: <ShareModule 
+                    submitFunction={this.renameBoard} 
+                    button={shareButton} 
+                    board_id={this.props.board_id} 
+      />,
+
       title,
       existent: true,
     };
   }
-
   async renameBoard(newTitle) {
     const { boardId } = this.props;
     const changeResult = await changeBoard.name(localStorage.getItem('JWT'), newTitle, boardId);
@@ -42,6 +58,7 @@ class DashCanvas extends React.Component {
     }
 
     this.setState({ title: newTitle });
+
   }
 
   deleteBoard() {
@@ -73,10 +90,12 @@ class DashCanvas extends React.Component {
             </div>
             <span>
               {this.state.theModal}
-              <div className="option">
+              {this.state.shareModal}
+              {/* <div className="option">
                 <i className="material-icons left">share</i>
                 <p>Share</p>
               </div>
+               */}
               <div className="option" onClick={this.deleteBoard}>
                 <i className="material-icons left">delete</i>
                 <p>Delete</p>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Preloader } from 'react-materialize';
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 import Board from '../components/board';
 import Toolbox from '../components/toolbox';
 import apiConfig from '../../config/apiConfig';

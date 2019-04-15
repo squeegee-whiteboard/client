@@ -2,6 +2,7 @@ import React from 'react';
 import DashCanvas from '../components/dashcanvas';
 import DashAddNew from '../components/dashaddnew';
 import './dashboard.css';
+
 import { boardInfo } from '../api';
 
 class Dashboard extends React.Component {
@@ -12,6 +13,7 @@ class Dashboard extends React.Component {
       boards: [],
     };
   }
+
 
   async componentDidMount() {
     const memberResult = await boardInfo.member(localStorage.getItem('JWT'));
@@ -29,6 +31,7 @@ class Dashboard extends React.Component {
     const { boards } = this.state;
     const boardList = boards.map(b => (
       <div className="col s12 m6 l4" key={b.board_id}>
+
         <DashCanvas boardId={b.board_id} title={b.board_name} />
       </div>
     ));

@@ -2,10 +2,9 @@
 import React from 'react';
 import './dashaddnew.css';
 import { Modal, Button } from 'react-materialize';
-import { changeBoard } from '../api';
 import { withRouter } from 'react-router';
-import BoardModule from '../components/boardModule';
-
+import { changeBoard } from '../api';
+import BoardModule from "./boardModule";
 
 
 class DashAddNew extends React.Component {
@@ -20,10 +19,10 @@ class DashAddNew extends React.Component {
               add
         </i>
       </Button>
-          );
+    );
 
     this.state = {
-      theModal: <BoardModule submitFunction={this.createBoard} button={triggerButton} board_id="0"/>,
+      theModal: <BoardModule submitFunction={this.createBoard} button={triggerButton} board_id="0" />,
     };
   }
 
@@ -32,7 +31,7 @@ class DashAddNew extends React.Component {
     changeBoard.create(localStorage.getItem('JWT'), value).then((result) => {
       history.push(`/whiteboard/${result.board_id}/`);
     });
-  };
+  }
 
   render() {
     return (
@@ -40,13 +39,13 @@ class DashAddNew extends React.Component {
         <div className="card-content-add-new">
           {/* <div className="whitespace"> */}
           {/* <div className="btn-wrapper"> */}
-      {this.state.theModal}
-                {/* </div> */}
+          {this.state.theModal}
+          {/* </div> */}
           {/* </div> */}
           {/* <span className="card-title bottom center grey-text text-ligten-4"> */}
           {/* Add a New Board */}
           {/* </span> */}
-          </div>
+        </div>
       </div>
     );
   }
