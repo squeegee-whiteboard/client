@@ -98,7 +98,6 @@ async function addMember(authToken, boardId) {
   try {
     const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/changeBoard/addMember`;
     const payload = {
-      name,
       board_id: boardId,
     };
     const settings = {

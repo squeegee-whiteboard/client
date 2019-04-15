@@ -27,7 +27,6 @@ class Whiteboard extends React.Component {
   async componentDidMount() {
     const { match: { params: { id: boardId } } } = this.props;
     const token = localStorage.getItem('JWT');
-    console.log(token);
 
     const memberResult = await boardInfo.isMember(token, boardId);
 
@@ -41,7 +40,10 @@ class Whiteboard extends React.Component {
         // TODO: error handling
         console.log(`Got error trying to add self to board members: ${addMemberResult.message}`);
         const { history } = this.props;
+
+        // Stop here so we don't try to connect to the socket
         history.push('/dashboard');
+        return;
       }
     }
 
@@ -55,7 +57,9 @@ class Whiteboard extends React.Component {
 
   componentWillUnmount() {
     // When unmounting, disconnect from the server socket
-    this.socket.disconnect();
+    if (this.socket !== undefined) {
+      this.socket.disconnect();
+    }
   }
 
   render() {
