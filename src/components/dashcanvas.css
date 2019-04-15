@@ -7,14 +7,19 @@
     vertical-align: center;
     margin-bottom: 0px;
     cursor: pointer;
-
 }
-#more-options-icon{
+
+.more-options-icon{
     font-size: 37px;
     color: #45A29E;
     margin-bottom:2px;
     margin-top:2px;
 }
+
+.more-options-icon:hover {
+    cursor: pointer;
+}
+
 .holder{
     height:200px;
     background-color: white;
@@ -44,8 +49,3 @@
     position: absolute;
     bottom: 0;
 }
-
-::-webkit-scrollbar{
-    display:none;
-}
-

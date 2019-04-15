@@ -47,8 +47,6 @@ async function name(authToken, newName, boardId) {
       },
     };
 
-    console.log(payload);
-
     const response = await axios.patch(address, payload, settings);
 
     responseData = response.data;

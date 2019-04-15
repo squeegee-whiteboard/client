@@ -1,10 +1,9 @@
 import React from 'react';
-import './dashcanvas.css';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import BoardModule from '../components/boardModule';
-import { changeBoard }  from '../api';
-
-
+import BoardModule from './boardModule';
+import { changeBoard } from '../api';
+import './dashcanvas.css';
 
 class DashCanvas extends React.Component {
   constructor(props) {
@@ -12,49 +11,58 @@ class DashCanvas extends React.Component {
     this.renameBoard = this.renameBoard.bind(this);
     this.deleteBoard = this.deleteBoard.bind(this);
 
-    const renameButton = (<div className="option">
-      <i className="material-icons left">edit</i>
-      <p>Rename</p>
-    </div>);
+    const renameButton = (
+      <div className="option">
+        <i className="material-icons left">edit</i>
+        <p>Rename</p>
+      </div>
+    );
 
-
+    const { boardId, title } = this.props;
 
     this.state = {
-      theModal: <BoardModule submitFunction={this.renameBoard} button={renameButton} board_id={this.props.board_id}/>,
-      title: this.props.title,
+      theModal: <BoardModule
+        submitFunction={this.renameBoard}
+        button={renameButton}
+        boardId={boardId}
+      />,
+      title,
       existent: true,
     };
   }
 
-  renameBoard(value) {
-    const { board_id } = this.props;
-    console.log("This is kinda working...");
-    this.setState({title: value})
-    changeBoard.name(localStorage.getItem('JWT'), value, board_id).then((result) => {
-      console.log(result);
-      // const { history } = this.props;
-      // history.push(`/whiteboard/${result.board_id}/`);
-    });
-  };
+  async renameBoard(newTitle) {
+    const { boardId } = this.props;
+    const changeResult = await changeBoard.name(localStorage.getItem('JWT'), newTitle, boardId);
+
+    if (!changeResult.success) {
+      // TODO: error handling
+      console.log(`error changing result: ${changeResult.message}`);
+      return;
+    }
+
+    this.setState({ title: newTitle });
+  }
 
   deleteBoard() {
-    this.setState({existent: false});
-    changeBoard.deleteBoard(localStorage.getItem('JWT'), this.props.board_id);
+    this.setState({ existent: false });
+    changeBoard.deleteBoard(localStorage.getItem('JWT'), this.props.boardId);
   }
 
 
   render() {
     if (!this.state.existent) return null;
+    const { boardId } = this.props;
     const { title } = this.state;
     return (
       <div className="card">
         <div className="card-content">
-          <div className="whitespace" />
-          <span className="card-title activator grey-text text-darken-4 center" id="board-name-title">
+          <Link className="whitespace" to={`/whiteboard/${boardId}`} />
+          <span className="card-title grey-text text-darken-4 center" id="board-name-title">
+            <Link className="whitespace" to={`/whiteboard/${boardId}`}>
               {title}
-            <i className="material-icons right" id="more-options-icon" >more_vert</i>
-
-
+            </Link>
+            <i className="material-icons activator right more-options-icon">more_vert</i>
           </span>
         </div>
         <div className="card-reveal">
@@ -84,6 +92,7 @@ class DashCanvas extends React.Component {
 
 DashCanvas.propTypes = {
   title: PropTypes.string.isRequired,
+  boardId: PropTypes.string.isRequired,
 };
 
 export default DashCanvas;
