@@ -23,7 +23,7 @@ function App() {
         <NoLoginRoute path="/signup" component={Signup} />
         <PrivateRoute path="/account" component={Account} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
-        <Route path="/whiteboard/:id" component={Whiteboard} />
+        <PrivateRoute path="/whiteboard/:id" component={Whiteboard} />
       </Switch>
     </Router>
   );

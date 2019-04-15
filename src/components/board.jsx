@@ -76,6 +76,7 @@ function removePaths(pathJSONList) {
 
 // Loads the given JSON dump into the current paper scope
 function loadBoard(boardJSON) {
+  project.clear();
   project.importJSON(boardJSON);
 }
 
