@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DrawingTool, EraserTool } from './tools';
+import { PanTool, DrawingTool, EraserTool } from './tools';
 import { DrawingSettings, EraserSettings } from './tool_settings';
 import './toolbox.css';
 
@@ -9,7 +9,7 @@ class Toolbox extends React.Component {
     super(props);
 
     this.state = {
-      selectedTool: DrawingTool.TOOL_ID,
+      selectedTool: PanTool.TOOL_ID,
       toolSettings: {
         drawingSettings: DrawingSettings.DEFAULT,
         eraserSettings: EraserSettings.DEFAULT,
@@ -34,6 +34,12 @@ class Toolbox extends React.Component {
     return (
       <div className="toolbox">
         <div className="tools">
+          <PanTool
+            selectedTool={selectedTool}
+            toolSettings={toolSettings}
+            selectTool={this.selectTool}
+            socket={socket}
+          />
           <DrawingTool
             selectedTool={selectedTool}
             toolSettings={toolSettings}
