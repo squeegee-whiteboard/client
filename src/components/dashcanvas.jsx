@@ -37,16 +37,17 @@ class DashCanvas extends React.Component {
         button={renameButton}
         boardId={boardId}
       />,
-      shareModal: <ShareModule 
-                    submitFunction={this.renameBoard} 
-                    button={shareButton} 
-                    board_id={this.props.board_id} 
+      shareModal: <ShareModule
+        submitFunction={this.renameBoard}
+        button={shareButton}
+        boardId={boardId}
       />,
 
       title,
       existent: true,
     };
   }
+
   async renameBoard(newTitle) {
     const { boardId } = this.props;
     const changeResult = await changeBoard.name(localStorage.getItem('JWT'), newTitle, boardId);
@@ -58,14 +59,16 @@ class DashCanvas extends React.Component {
     }
 
     this.setState({ title: newTitle });
-
+    const { socket } = this.props;
+    socket.emit('change_board');
   }
 
   deleteBoard() {
     this.setState({ existent: false });
     changeBoard.deleteBoard(localStorage.getItem('JWT'), this.props.boardId);
+    const { socket } = this.props;
+    socket.emit('change_board');
   }
-
 
   render() {
     if (!this.state.existent) return null;
@@ -112,6 +115,9 @@ class DashCanvas extends React.Component {
 DashCanvas.propTypes = {
   title: PropTypes.string.isRequired,
   boardId: PropTypes.string.isRequired,
+  socket: PropTypes.shape({
+    emit: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default DashCanvas;
