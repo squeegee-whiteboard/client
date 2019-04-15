@@ -61,7 +61,7 @@ class Nav extends React.Component {
     return (
       <>
         <nav>
-          <div className="nav-wrapper black">
+          <div className="nav-wrapper">
             <a href="/" className="brand-logo" id="logo">Squeegee</a>
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li>
