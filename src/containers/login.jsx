@@ -64,8 +64,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { email, password, formErrors, loggedIn } = this.state;
-    if (loggedIn) return <Redirect to="/" />;
+    const { email, password, formErrors } = this.state;
     return (
       <div className="page-container">
         <div className="login">
@@ -74,10 +73,7 @@ class Login extends React.Component {
           <form className="form-inline" onSubmit={this.handleSubmit}>
             <div className="form-group">
               <TextInput
-                  style=
-                      {{
-                        color : "white"
-                      }}
+                style={{ color: 'white' }}
                 email
                 validate
                 icon="email"
@@ -89,10 +85,7 @@ class Login extends React.Component {
             </div>
             <div className="form-group">
               <TextInput
-                  style=
-                      {{
-                        color : "white"
-                      }}
+                style={{ color: 'white' }}
                 password
                 icon="vpn_key"
                 label="Password"
@@ -105,7 +98,7 @@ class Login extends React.Component {
             <Button type="submit" waves="light">
             Login
             </Button>
-            <Link className="btn" to="/signup">
+            <Link className="btn account-btn" to="/signup">
             Create New Account
             </Link>
           </form>
