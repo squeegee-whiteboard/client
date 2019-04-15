@@ -37,16 +37,17 @@ class DashCanvas extends React.Component {
         button={renameButton}
         boardId={boardId}
       />,
-      shareModal: <ShareModule 
-                    submitFunction={this.renameBoard} 
-                    button={shareButton} 
-                    board_id={this.props.board_id} 
+      shareModal: <ShareModule
+        submitFunction={this.renameBoard}
+        button={shareButton}
+        boardId={boardId}
       />,
 
       title,
       existent: true,
     };
   }
+
   async renameBoard(newTitle) {
     const { boardId } = this.props;
     const changeResult = await changeBoard.name(localStorage.getItem('JWT'), newTitle, boardId);
@@ -68,7 +69,6 @@ class DashCanvas extends React.Component {
     const { socket } = this.props;
     socket.emit('change_board');
   }
-
 
   render() {
     if (!this.state.existent) return null;

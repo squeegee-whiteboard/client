@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './dashaddnew.css';
 import { Modal, Button } from 'react-materialize';
 // import { changeBoard } from '../api';
@@ -9,10 +10,16 @@ import { Modal, Button } from 'react-materialize';
 class ShareModule extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { show: false, board_id: this.props.board_id };
+    this.state = { show: false, url: '' };
 
     this.handleClose = this.handleClose.bind(this);
     this.handleShow = this.handleClose.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      url: `${window.location.protocol}://${window.location.host}/#/whiteboard/`,
+    });
   }
 
   handleShow() {
@@ -41,8 +48,9 @@ class ShareModule extends React.Component {
           </div>
               )}
       >
-        {/* ${this.props.location.pathname} */}
-        URL HERE
+        <Link to={`/whiteboard/${this.props.boardId}`}>
+          {this.state.url + this.props.boardId}
+        </Link>
       </Modal>
 
     );
