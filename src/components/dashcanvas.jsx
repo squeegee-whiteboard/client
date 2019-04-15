@@ -5,6 +5,7 @@ import BoardModule from '../components/boardModule';
 import { changeBoard }  from '../api';
 
 
+
 class DashCanvas extends React.Component {
   constructor(props) {
     super(props);
@@ -52,6 +53,7 @@ class DashCanvas extends React.Component {
           <span className="card-title activator grey-text text-darken-4 center">
               {title}
             <i className="material-icons right">more_vert</i>
+
 
           </span>
         </div>

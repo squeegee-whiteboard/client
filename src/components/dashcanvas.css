@@ -7,7 +7,7 @@
     vertical-align: center;
     margin-bottom: 0px;
     cursor: pointer;
-    overflow-y: hidden;
+
 }
 #more-options-icon{
     font-size: 37px;
@@ -38,9 +38,14 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    overflow: hidden;
 }
 #board-name-title{
     position: absolute;
     bottom: 0;
+}
+
+::-webkit-scrollbar{
+    display:none;
 }
 

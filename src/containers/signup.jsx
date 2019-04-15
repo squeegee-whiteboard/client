@@ -15,10 +15,6 @@ class Signup extends React.Component {
       password: '',
       confirm: '',
       formErrors: '',
-      // formErrors: { email: '', password: '' },
-      // emailValid: false,
-      // passwordValid: false,
-      // formValid: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
