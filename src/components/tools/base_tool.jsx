@@ -59,6 +59,9 @@ BaseTool.propTypes = {
       width: PropTypes.number.isRequired,
     }),
   }).isRequired,
+  socket: PropTypes.shape({
+    emit: PropTypes.func,
+  }).isRequired,
 };
 
 export default BaseTool;

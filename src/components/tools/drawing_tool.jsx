@@ -37,6 +37,10 @@ class DrawingTool extends BaseTool {
       if (this.path.segments.length < 2) {
         this.path.add(event.point);
       }
+
+      const { socket } = this.props;
+      const pathJSON = this.path.exportJSON();
+      socket.emit('new_path', pathJSON);
     };
   }
 }
