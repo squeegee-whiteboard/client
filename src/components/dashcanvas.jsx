@@ -53,8 +53,6 @@ class DashCanvas extends React.Component {
           <span className="card-title activator grey-text text-darken-4 center" id="board-name-title">
               {title}
             <i className="material-icons right" id="more-options-icon" >more_vert</i>
-
-
           </span>
         </div>
         <div className="card-reveal">
