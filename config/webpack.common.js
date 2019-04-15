@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsplugin = require('optimize-css-assets-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
   entry: ['babel-polyfill', './src/index.jsx'],
@@ -24,7 +23,6 @@ module.exports = {
       hash: true,
       template: './src/index.html',
     }),
-    new FaviconsWebpackPlugin(path.resolve(__dirname, '../logo.svg')),
   ],
   module: {
     rules: [

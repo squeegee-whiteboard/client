@@ -1,4 +1,3 @@
-import './tool_settings.css';
 import React from 'react';
 import update from 'immutability-helper';
 import ColorPicker from '../color_picker';

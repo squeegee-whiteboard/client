@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Icon } from 'react-materialize';
 import PropTypes from 'prop-types';
 import BoardModule from './boardModule';
-
 import ShareModule from './shareModule';
 import { changeBoard } from '../api';
 import './dashcanvas.css';
@@ -11,41 +11,13 @@ import './dashcanvas.css';
 class DashCanvas extends React.Component {
   constructor(props) {
     super(props);
-    this.renameBoard = this.renameBoard.bind(this);
-    this.deleteBoard = this.deleteBoard.bind(this);
-
-    const renameButton = (
-      <div className="option">
-        <i className="material-icons left">edit</i>
-        <p>Rename</p>
-      </div>
-    );
-    
-    const shareButton = (
-      <div className="option">
-        <i className="material-icons left">share</i>
-        <p>Share</p>
-      </div>
-    );
-
-
-    const { boardId, title } = this.props;
 
     this.state = {
-      theModal: <BoardModule
-        submitFunction={this.renameBoard}
-        button={renameButton}
-        boardId={boardId}
-      />,
-      shareModal: <ShareModule
-        submitFunction={this.renameBoard}
-        button={shareButton}
-        boardId={boardId}
-      />,
-
-      title,
       existent: true,
     };
+
+    this.renameBoard = this.renameBoard.bind(this);
+    this.deleteBoard = this.deleteBoard.bind(this);
   }
 
   async renameBoard(newTitle) {
@@ -64,26 +36,27 @@ class DashCanvas extends React.Component {
   }
 
   deleteBoard() {
+    const { boardId } = this.props;
     this.setState({ existent: false });
-    changeBoard.deleteBoard(localStorage.getItem('JWT'), this.props.boardId);
+    changeBoard.deleteBoard(localStorage.getItem('JWT'), boardId);
     const { socket } = this.props;
     socket.emit('change_board');
   }
 
   render() {
-    if (!this.state.existent) return null;
-    const { boardId } = this.props;
-    const { title } = this.state;
+    const { existent } = this.state;
+    const { boardId, title } = this.props;
+    if (!existent) return null;
     return (
       <div className="card">
         <div className="card-content">
           <Link className="whitespace" to={`/whiteboard/${boardId}`} />
-          <span className="card-title grey-text text-darken-4 center" id="board-name-title">
+          <div className="card-title grey-text text-darken-4 center" id="board-name-title">
             <Link className="whitespace" to={`/whiteboard/${boardId}`}>
               {title}
             </Link>
             <i className="material-icons activator right more-options-icon">more_vert</i>
-          </span>
+          </div>
         </div>
         <div className="card-reveal">
           <div className="menu-wrapper">
@@ -92,16 +65,35 @@ class DashCanvas extends React.Component {
               <i className="material-icons right" id="close">close</i>
             </div>
             <span>
-              {this.state.theModal}
-              {this.state.shareModal}
-              {/* <div className="option">
-                <i className="material-icons left">share</i>
-                <p>Share</p>
-              </div>
-               */}
+              <BoardModule
+                submitFunction={this.renameBoard}
+                button={(
+                  <div className="option">
+                    <span className="option-contents">
+                      <Icon left>edit</Icon>
+                      <p>Rename</p>
+                    </span>
+                  </div>
+                )}
+                boardId={boardId}
+              />
+              <ShareModule
+                submitFunction={this.renameBoard}
+                button={(
+                  <div className="option">
+                    <span className="option-contents">
+                      <Icon left>share</Icon>
+                      <p>Share</p>
+                    </span>
+                  </div>
+                )}
+                boardId={boardId}
+              />
               <div className="option" onClick={this.deleteBoard}>
-                <i className="material-icons left">delete</i>
-                <p>Delete</p>
+                <span className="option-contents">
+                  <Icon left>delete</Icon>
+                  <p>Delete</p>
+                </span>
               </div>
             </span>
           </div>

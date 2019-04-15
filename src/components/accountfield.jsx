@@ -1,6 +1,4 @@
 import React from 'react';
-// import { DrawingTool, EraserTool } from './tools';
-// import { DrawingSettings, EraserSettings } from './tool_settings';
 import './accountfield.css';
 import PropTypes from 'prop-types';
 import { changeUser } from '../api';

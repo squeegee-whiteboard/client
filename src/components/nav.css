@@ -1,24 +1,18 @@
-a{
-    margin: 5px;
-}
 .nav-wrapper{
     background-color: #1F2833;
 }
-#person-icon{
-    margin-left:30px;
-    margin-right:30px;
-    font-size: 30px;
+
+.logo-text {
+    height: 100%;
+    color: #fff;
 }
 
-#logo{
-    margin-left:40px;
-    color: white;
-}
-#sharebtn{
-    padding-top: 10px;
-    vertical-align: center;
-}
-.material-icons{
-    color:white;
+.logo-img {
+    height: 37px;
+    margin-bottom: 6px;
 }
 
+.navitem-content {
+    display: flex;
+    align-items: center;
+}

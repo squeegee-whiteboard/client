@@ -1,89 +1,88 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import '../index.css';
-
 import './nav.css';
-import { Dropdown, Divider } from 'react-materialize';
+import {
+  Navbar,
+  NavItem,
+  Icon,
+} from 'react-materialize';
 import {
   Route,
   Link,
+  Switch,
 } from 'react-router-dom';
 import Share from './share';
+import Logo from '../../logo.svg';
 
 const logoutFunction = () => {
-  console.log('removing token');
   localStorage.removeItem('JWT');
   return true;
 };
 
-const accountItem = () => (
-  <a href="/#/account">
-    <i className="material-icons">settings</i>
-    {'My Account'}
-  </a>
-);
-
-const dashboardItem = () => (
-  <a href="/#/dashboard">
-    <i className="material-icons">dashboard</i>
-    {'My Boards'}
-  </a>
-);
-
-class Nav extends React.Component {
-  constructor(props) {
-    super(props);
-    this.chooseComponent = this.chooseComponent.bind(this);
-  }
-
-  chooseComponent() {
-    let retItem;
-    const { location } = this.props;
-    const { pathname } = location;
-    if (pathname.toLowerCase().endsWith('account') || pathname.toLowerCase().endsWith('account/')) {
-      retItem = dashboardItem();
-    } else if (pathname.toLowerCase().endsWith('dashboard') || pathname.toLowerCase().endsWith('dashboard/')) {
-      retItem = accountItem();
-    } else {
-      retItem = (
-        <React.Fragment>
-          { accountItem() }
-          <Divider />
-          { dashboardItem() }
-        </React.Fragment>
-      );
-    }
-    return retItem;
-  }
-
-  render() {
-    return (
-      <>
-        <nav>
-          <div className="nav-wrapper">
-            <a href="/" className="left brand-logo" id="logo">Squeegee</a>
-            <ul id="nav-mobile" className="right">
-              <li id="sharebtn">
-                <Route path="/whiteboard/:id" component={Share} />
-              </li>
-              <li>
-                <Dropdown trigger={<i className="large material-icons" id="person-icon">person</i>}>
-                  { this.chooseComponent() }
-                  <Divider />
-                  <a href="../#/login" onClick={logoutFunction}>
-                    <i className="material-icons">exit_to_app</i>
-                    {'Logout'}
-                  </a>
-                </Dropdown>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
-      </>
-    );
-  }
+function Nav() {
+  return (
+    <Navbar
+      brand={(
+        <Link
+          style={{
+            padding: '0 15px',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          to="/"
+        >
+          <img className="logo-img" src={Logo} alt="Squeegee Logo" />
+          <span className="logo-text">Squeegee</span>
+        </Link>
+      )}
+      alignLinks="right"
+    >
+      <Route
+        path="/whiteboard/:id"
+        component={() => (
+          <Share />
+        )}
+      />
+      <Switch>
+        <Route
+          path="/dashboard"
+          component={() => null}
+        />
+        <Route
+          component={() => (
+            <Link to="/dashboard" className="nav-item">
+              <div className="navitem-content">
+                <Icon>dashboard</Icon>
+                My Boards
+              </div>
+            </Link>
+          )}
+        />
+      </Switch>
+      <Switch>
+        <Route
+          path="/account"
+          component={() => null}
+        />
+        <Route
+          component={() => (
+            <Link to="/account" className="nav-item">
+              <div className="navitem-content">
+                <Icon>settings</Icon>
+                My Account
+              </div>
+            </Link>
+          )}
+        />
+      </Switch>
+      <Link to="/login" onClick={logoutFunction} className="nav-item">
+        <div className="navitem-content">
+          <i className="material-icons">exit_to_app</i>
+          Logout
+        </div>
+      </Link>
+    </Navbar>
+  );
 }
 
 Nav.propTypes = {

@@ -1,8 +1,7 @@
 import React from 'react';
 import AccountField from '../components/accountfield';
-import './account.css';
-import '../components/accountfield.css';
 import { changeUser } from '../api';
+import './account.css';
 
 class Account extends React.Component {
   constructor() {

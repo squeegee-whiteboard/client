@@ -1,5 +1,3 @@
-/* TODO: CHANGE to fit the screen dynamically */
-
 .menu-wrapper{
     background-color: #666869;
     color: white;
@@ -14,6 +12,8 @@
     color: #45A29E !important;
     margin-bottom:2px;
     margin-top:2px;
+    position: absolute;
+    right: 0;
 }
 
 .more-options-icon:hover {
@@ -32,8 +32,14 @@
 .option:hover{
     background-color: #aeb1b3;
 }
-#close:hover{
+
+#close:hover {
     color: #b8bec2;
+}
+
+.option-contents {
+    display: flex;
+    align-items: center;
 }
 
 .card-content{
@@ -48,4 +54,8 @@
 #board-name-title{
     position: absolute;
     bottom: 0;
+}
+
+.card-title {
+    width: 100%;
 }

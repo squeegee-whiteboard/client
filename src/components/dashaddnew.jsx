@@ -13,7 +13,10 @@ class DashAddNew extends React.Component {
     this.createBoard = this.createBoard.bind(this);
 
     const triggerButton = (
-      <Button className="btn-floating btn-large waves-effect waves-light">
+      <Button
+        className="btn-floating btn-large waves-effect waves-light"
+        style={{ margin: 0 }}
+      >
         {' '}
         <i className="material-icons">
               add

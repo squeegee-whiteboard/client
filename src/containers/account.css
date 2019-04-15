@@ -4,9 +4,7 @@
     margin: auto;
     padding: 2em;
 }
-*{
+
+.icon-label {
     color: black;
-}
-.material-icons{
-    color:white;
 }

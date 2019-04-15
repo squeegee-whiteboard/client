@@ -15,6 +15,11 @@
 .tool-settings {
     margin-bottom: auto;
     border-top: 1px solid black;
+    color: white;
+}
+
+.tool-settings input[type="range"] {
+    border: none;
 }
 
 .tool {

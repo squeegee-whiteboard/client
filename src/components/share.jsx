@@ -1,7 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
 import {
-  Text, Modal, Button, View,
+  Button,
+  Modal,
+  NavItem,
+  Icon,
 } from 'react-materialize';
 
 
@@ -21,14 +25,18 @@ class Share extends React.Component {
   }
 
   render() {
+    const { location: { pathname } } = this.props;
+    const { location: winLocation } = this.state;
+
     return (
-
-
       <Modal
         header="Copy This Shareable Link"
         modal-footer="confirm"
         trigger={(
-          <Button className="waves-effect waves-light btn-small">Share</Button>
+          <NavItem>
+            <Icon left>share</Icon>
+            Share
+          </NavItem>
           )}
         actions={(
           <div>
@@ -40,13 +48,19 @@ class Share extends React.Component {
           </div>
           )}
       >
-
-        <Link to={this.props.location.pathname}>
-          {this.state.location + this.props.location.pathname}
+        <Link to={pathname}>
+          {winLocation + pathname}
         </Link>
       </Modal>
 
     );
   }
 }
-export default Share;
+
+Share.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+export default withRouter(Share);
