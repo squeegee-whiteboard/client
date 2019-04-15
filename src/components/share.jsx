@@ -1,13 +1,30 @@
 import React from 'react';
-import '../index.css';
-import './nav.css';
-import { Button } from 'react-materialize';
+import { Text, Modal, Button, View} from 'react-materialize';
 
 
-function Share() {
+function Share(props) {
   return (
 
-    <Button className="waves-effect waves-light btn-small">Share</Button>
+
+      <Modal
+        header="Copy This Shareable Link"
+        modal-footer="confirm"
+        trigger={(
+            <Button className="waves-effect waves-light btn-small">Share</Button>
+        )}
+        actions={(
+        <div>
+          <Button flat modal="close" waves="light" className="transparent">
+            <i className="material-icons modalicon">
+              close
+            </i>
+          </Button>
+        </div>
+        )}
+      >
+
+        {`${props.location.pathname}`}
+      </Modal>
 
   );
 }
