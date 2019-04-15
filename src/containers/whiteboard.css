@@ -12,3 +12,13 @@
     justify-content: center;
     flex-grow: 1;
 }
+
+@media screen and (max-width: 800px) {
+    .whiteboard {
+        grid-template-columns: auto;
+    }
+
+    .toolbox {
+        display: none;
+    }
+}

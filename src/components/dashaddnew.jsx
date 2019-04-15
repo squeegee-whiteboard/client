@@ -32,6 +32,8 @@ class DashAddNew extends React.Component {
     changeBoard.create(localStorage.getItem('JWT'), value).then((result) => {
       history.push(`/whiteboard/${result.board_id}/`);
     });
+    const { socket } = this.props;
+    socket.emit('change_board');
   };
 
   render() {
