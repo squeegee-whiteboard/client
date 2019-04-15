@@ -60,16 +60,16 @@ async function isMember(authToken, boardId) {
 
   try {
     const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/boardInfo/isMember`;
-    const payload = {
-      board_id: boardId,
-    };
     const settings = {
+      params: {
+        board_id: boardId,
+      },
       headers: {
         Authorization: authToken,
       },
     };
 
-    const response = await axios.get(address, payload, settings);
+    const response = await axios.get(address, settings);
 
     responseData = response.data;
   } catch (error) {
