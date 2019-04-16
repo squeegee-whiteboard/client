@@ -40,7 +40,7 @@ function Nav() {
             display: 'flex',
             alignItems: 'center',
           }}
-          to="/"
+          to="/dashboard"
         >
           <img className="logo-img" src={Logo} alt="Squeegee Logo" />
           <span className="logo-text">Squeegee</span>
