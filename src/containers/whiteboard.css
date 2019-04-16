@@ -24,11 +24,12 @@
     top: 70px;
     left: 10px;
     width: 60px !important;
-    z-index: 20;
+    z-index: 2;
 }
 
 .board {
     grid-column: 2 / 3;
+    grid-row: 1 / 2;
     background: white;
 }
 
