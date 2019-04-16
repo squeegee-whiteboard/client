@@ -46,7 +46,7 @@ class Whiteboard extends React.Component {
     }
 
     // After mounting, connect to the server socket
-    this.socket = io(`${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/board`);
+    this.socket = io(`${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/board`);
     this.socket.on('connect', () => {
       this.socket.emit('boardId', boardId);
       this.setState({ mounted: true });
