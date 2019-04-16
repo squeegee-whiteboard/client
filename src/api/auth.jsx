@@ -6,7 +6,7 @@ async function register(email, username, password) {
   let responseData = {};
 
   try {
-    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/auth/register`;
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/auth/register`;
     const payload = {
       email,
       username,
@@ -31,7 +31,7 @@ async function login(email, password) {
   let responseData = {};
 
   try {
-    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/auth/login`;
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/auth/login`;
     const payload = {
       email,
       password,

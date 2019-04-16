@@ -7,7 +7,7 @@ async function username(authToken, newUsername) {
   let responseData = {};
 
   try {
-    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/changeUser/username`;
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/changeUser/username`;
     const payload = {
       username: newUsername,
     };
@@ -36,7 +36,7 @@ async function email(authToken, newEmail) {
   let responseData = {};
 
   try {
-    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/changeUser/email`;
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/changeUser/email`;
     const payload = {
       email: newEmail,
     };
@@ -66,7 +66,7 @@ async function password(authToken, oldPassword, newPassword) {
   let responseData = {};
 
   try {
-    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/changeUser/password`;
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/changeUser/password`;
     const payload = {
       oldPassword,
       newPassword,
@@ -96,7 +96,7 @@ async function info(authToken) {
   let responseData = {};
 
   try {
-    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/changeUser/info`;
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/changeUser/info`;
     const settings = {
       headers: {
         Authorization: authToken,

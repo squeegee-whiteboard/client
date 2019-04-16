@@ -7,7 +7,7 @@ async function owned(authToken) {
   let responseData = {};
 
   try {
-    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/boardInfo/owned`;
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/boardInfo/owned`;
     const settings = {
       headers: {
         Authorization: authToken,
@@ -33,7 +33,7 @@ async function member(authToken) {
   let responseData = {};
 
   try {
-    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/boardInfo/member`;
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/boardInfo/member`;
     const settings = {
       headers: {
         Authorization: authToken,
@@ -59,7 +59,7 @@ async function isMember(authToken, boardId) {
   let responseData = {};
 
   try {
-    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/boardInfo/isMember`;
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/boardInfo/isMember`;
     const settings = {
       params: {
         board_id: boardId,

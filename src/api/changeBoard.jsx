@@ -7,7 +7,7 @@ async function create(authToken, boardName) {
   let responseData = {};
 
   try {
-    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/changeBoard/create`;
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/changeBoard/create`;
     const payload = {
       name: boardName,
     };
@@ -36,7 +36,7 @@ async function name(authToken, newName, boardId) {
   let responseData = {};
 
   try {
-    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/changeBoard/name`;
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/changeBoard/name`;
     const payload = {
       name: newName,
       board_id: boardId,
@@ -67,7 +67,7 @@ async function deleteBoard(authToken, boardId) {
   let responseData = {};
 
   try {
-    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/changeBoard/delete`;
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/changeBoard/delete`;
     const payload = {
       board_id: boardId,
     };
@@ -96,7 +96,7 @@ async function addMember(authToken, boardId) {
   let responseData = {};
 
   try {
-    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/changeBoard/addMember`;
+    const address = `${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/changeBoard/addMember`;
     const payload = {
       board_id: boardId,
     };
