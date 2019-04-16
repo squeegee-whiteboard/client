@@ -33,6 +33,13 @@ class Dashboard extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    // When unmounting, disconnect from the server socket
+    if (this.socket !== undefined) {
+      this.socket.disconnect();
+    }
+  }
+
   async updateBoards() {
     const memberResult = await boardInfo.member(localStorage.getItem('JWT'));
 
