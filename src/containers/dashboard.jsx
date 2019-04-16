@@ -46,7 +46,7 @@ class Dashboard extends React.Component {
   render() {
     const { boards, mounted } = this.state;
     const boardList = boards.map(b => (
-      <div className="col s12 m6 l4" key={b.board_name}>
+      <div className="col s12 m6 l4" key={b.board_name + b.board_id}>
         {(mounted ? (
           <DashCanvas socket={this.socket} boardId={b.board_id} title={b.board_name} />
         ) : (

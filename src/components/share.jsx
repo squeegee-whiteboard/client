@@ -7,6 +7,7 @@ import {
   NavItem,
   Icon,
 } from 'react-materialize';
+import './share.css';
 
 
 class Share extends React.Component {
@@ -20,7 +21,7 @@ class Share extends React.Component {
 
   componentDidMount() {
     this.setState({
-      location: `${window.location.protocol}://${window.location.host}/#`,
+      location: `${window.location.protocol}//${window.location.host}/#`,
     });
   }
 
@@ -52,7 +53,6 @@ class Share extends React.Component {
           {winLocation + pathname}
         </Link>
       </Modal>
-
     );
   }
 }

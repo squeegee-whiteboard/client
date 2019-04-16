@@ -67,7 +67,7 @@ class Login extends React.Component {
     const { email, password, formErrors } = this.state;
     return (
       <div className="page-container">
-        <div className="login">
+        <div className="login-signup">
           <h1>Squeegee</h1>
           {!!formErrors && <span className="login-signup-error">{formErrors}</span>}
           <form className="form-inline" onSubmit={this.handleSubmit}>
@@ -94,12 +94,11 @@ class Login extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <p>Forgot Password?</p>
             <Button type="submit" waves="light">
-            Login
+              Login
             </Button>
             <Link className="btn account-btn" to="/signup">
-            Create New Account
+              Create New Account
             </Link>
           </form>
         </div>

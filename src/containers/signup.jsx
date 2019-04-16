@@ -58,10 +58,7 @@ class Signup extends React.Component {
     if (errorMsg) {
       return;
     }
-    console.log("Get here");
-
     auth.register(email, username, password).then((result) => {
-      console.log("This finishes...");
       const { success } = result;
 
       if (!success) {
@@ -72,7 +69,7 @@ class Signup extends React.Component {
       }
 
       const { token } = result;
-      console.log("Setting token...");
+      console.log('Setting token...');
       localStorage.setItem('JWT', token);
 
 
@@ -90,97 +87,82 @@ class Signup extends React.Component {
       password,
       confirm,
       formErrors,
-      loggedIn,
       // formErrors,
       // passwordValid,
       // formValid,
     } = this.state;
     // TODO: More validation
-    if (loggedIn) return <Redirect to="/" />;
     return (
-        <div className="page-container">
-      <div className="Signup">
-        <h1>Squeegee</h1>
-        {!!formErrors && <span className="login-signup-error">{formErrors}</span>}
-        <form className="form-inline" onSubmit={this.handleSubmit}>
-          <div className="form-group" id="signup-form">
-            <TextInput
-                style=
-                    {{
-                      color : "white"
-                    }}
-              id="email_box"
-              label="Email"
-              icon="email"
-              name="email"
-              email
-              validate
-              error="Invalid Email"
-              value={email}
-              onChange={this.handleChange}
-              required
-              aria-required="true"
-            />
-          </div>
-          <div className="form-group" id="signup-form">
-            <TextInput
-                style=
-                    {{
-                      color : "white"
-                    }}
-              id="username_box"
-              label="Username"
-              icon="account_circle"
-              name="username"
-              value={username}
-              onChange={this.handleChange}
-              required
-              aria-required="true"
-            />
-          </div>
-          <div className="form-group" id="signup-form">
-            <TextInput
-                style=
-                    {{
-                      color : "white"
-                    }}
-              id="password_box"
-              password
-              label="Password"
-              icon="vpn_key"
-              name="password"
-              value={password}
-              onChange={this.handleChange}
-              required
-              aria-required="true"
-            />
-          </div>
-          <div className="form-group" id="signup-form">
-            <TextInput
-                style=
-                    {{
-                      color : "white"
-                    }}
-              id="confirm_password_box"
-              password
-              label="Confirm Password"
-              icon="check_box"
-              name="confirm"
-              value={confirm}
-              onChange={this.handleChange}
-              required
-              aria-required="true"
-            />
-          </div>
-          <Button
-            type="submit"
-            waves="light"
-          >
-            {'Create Account'}
-          </Button>
-        </form>
-      </div>
+      <div className="page-container">
+        <div className="login-signup">
+          <h1>Squeegee</h1>
+          {!!formErrors && <span className="login-signup-error">{formErrors}</span>}
+          <form className="form-inline" onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <TextInput
+                style={{ color: 'white' }}
+                id="email_box"
+                label="Email"
+                icon="email"
+                name="email"
+                email
+                validate
+                value={email}
+                onChange={this.handleChange}
+                required
+                aria-required="true"
+              />
+            </div>
+            <div className="form-group">
+              <TextInput
+                style={{ color: 'white' }}
+                id="username_box"
+                label="Username"
+                icon="account_circle"
+                name="username"
+                value={username}
+                onChange={this.handleChange}
+                required
+                aria-required="true"
+              />
+            </div>
+            <div className="form-group">
+              <TextInput
+                style={{ color: 'white' }}
+                id="password_box"
+                password
+                label="Password"
+                icon="vpn_key"
+                name="password"
+                value={password}
+                onChange={this.handleChange}
+                required
+                aria-required="true"
+              />
+            </div>
+            <div className="form-group">
+              <TextInput
+                style={{ color: 'white' }}
+                id="confirm_password_box"
+                password
+                label="Confirm Password"
+                icon="check_box"
+                name="confirm"
+                value={confirm}
+                onChange={this.handleChange}
+                required
+                aria-required="true"
+              />
+            </div>
+            <Button
+              type="submit"
+              waves="light"
+            >
+              Create Account
+            </Button>
+          </form>
         </div>
+      </div>
     );
   }
 }

@@ -6,6 +6,11 @@
     overflow: hidden;
 }
 
+.whiteboard .btn {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
 .whiteboard-preload {
     display: flex;
     align-items: center;
@@ -16,7 +21,7 @@
 .toggle-mobile {
     display: none !important;
     position: absolute;
-    top: 50px;
+    top: 70px;
     left: 10px;
     width: 60px !important;
     z-index: 20;
@@ -39,5 +44,9 @@
 
     .toggle-mobile {
         display: inline !important;
+    }
+
+    .tools {
+        margin-top: 50px;
     }
 }

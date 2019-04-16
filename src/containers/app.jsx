@@ -16,7 +16,6 @@ import { PrivateRoute, NoLoginRoute } from '../components/redirect_routes';
 
 function App() {
   return (
-    // console.log(path);
     <Router>
       <Route path={['/whiteboard/:id', '/dashboard', '/account']} component={Nav} />
       <Switch>

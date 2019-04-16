@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from 'react-materialize';
 import PropTypes from 'prop-types';
-import BoardModule from './boardModule';
-import ShareModule from './shareModule';
+import BoardModal from './boardModal';
+import ShareModal from './shareModal';
 import { changeBoard } from '../api';
 import './dashcanvas.css';
 
@@ -12,8 +12,10 @@ class DashCanvas extends React.Component {
   constructor(props) {
     super(props);
 
+    const { title } = this.props;
     this.state = {
       existent: true,
+      title,
     };
 
     this.renameBoard = this.renameBoard.bind(this);
@@ -35,17 +37,24 @@ class DashCanvas extends React.Component {
     socket.emit('change_board');
   }
 
-  deleteBoard() {
+  async deleteBoard() {
     const { boardId } = this.props;
-    this.setState({ existent: false });
-    changeBoard.deleteBoard(localStorage.getItem('JWT'), boardId);
+    const deleteResult = await changeBoard.deleteBoard(localStorage.getItem('JWT'), boardId);
+
+    if (!deleteResult.success) {
+      // TODO: error handling
+      console.log(`error deleting board: ${deleteResult.message}`);
+      return;
+    }
+
     const { socket } = this.props;
     socket.emit('change_board');
+    this.setState({ existent: false });
   }
 
   render() {
-    const { existent } = this.state;
-    const { boardId, title } = this.props;
+    const { existent, title } = this.state;
+    const { boardId } = this.props;
     if (!existent) return null;
     return (
       <div className="card">
@@ -65,8 +74,9 @@ class DashCanvas extends React.Component {
               <i className="material-icons right" id="close">close</i>
             </div>
             <span>
-              <BoardModule
+              <BoardModal
                 submitFunction={this.renameBoard}
+                boardId={boardId}
                 button={(
                   <div className="option">
                     <span className="option-contents">
@@ -75,10 +85,8 @@ class DashCanvas extends React.Component {
                     </span>
                   </div>
                 )}
-                boardId={boardId}
               />
-              <ShareModule
-                submitFunction={this.renameBoard}
+              <ShareModal
                 button={(
                   <div className="option">
                     <span className="option-contents">
@@ -89,7 +97,12 @@ class DashCanvas extends React.Component {
                 )}
                 boardId={boardId}
               />
+              {/* TODO: better accessibility */}
+              {/* eslint-disable jsx-a11y/click-events-have-key-events,
+                    jsx-a11y/no-static-element-interactions */}
               <div className="option" onClick={this.deleteBoard}>
+                {/* eslint-enable jsx-a11y/click-events-have-key-events,
+                      jsx-a11y/no-static-element-interactions */}
                 <span className="option-contents">
                   <Icon left>delete</Icon>
                   <p>Delete</p>

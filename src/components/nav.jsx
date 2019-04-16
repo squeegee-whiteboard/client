@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './nav.css';
 import {
   Navbar,
-  NavItem,
   Icon,
 } from 'react-materialize';
 import {
@@ -18,6 +17,18 @@ const logoutFunction = () => {
   localStorage.removeItem('JWT');
   return true;
 };
+
+const allButPath = (path, component) => (
+  <Switch>
+    <Route
+      path={path}
+      component={() => null}
+    />
+    <Route
+      component={() => component}
+    />
+  </Switch>
+);
 
 function Nav() {
   return (
@@ -43,41 +54,25 @@ function Nav() {
           <Share />
         )}
       />
-      <Switch>
-        <Route
-          path="/dashboard"
-          component={() => null}
-        />
-        <Route
-          component={() => (
-            <Link to="/dashboard" className="nav-item">
-              <div className="navitem-content">
-                <Icon>dashboard</Icon>
-                My Boards
-              </div>
-            </Link>
-          )}
-        />
-      </Switch>
-      <Switch>
-        <Route
-          path="/account"
-          component={() => null}
-        />
-        <Route
-          component={() => (
-            <Link to="/account" className="nav-item">
-              <div className="navitem-content">
-                <Icon>settings</Icon>
-                My Account
-              </div>
-            </Link>
-          )}
-        />
-      </Switch>
-      <Link to="/login" onClick={logoutFunction} className="nav-item">
+      {allButPath('/dashboard', (
+        <Link to="/dashboard" className="nav-item sidenav-close">
+          <div className="navitem-content">
+            <Icon left>dashboard</Icon>
+            My Boards
+          </div>
+        </Link>
+      ))}
+      {allButPath('/account', (
+        <Link to="/account" className="nav-item sidenav-close">
+          <div className="navitem-content">
+            <Icon left>settings</Icon>
+            My Account
+          </div>
+        </Link>
+      ))}
+      <Link to="/login" onClick={logoutFunction} className="nav-item sidenav-close">
         <div className="navitem-content">
-          <i className="material-icons">exit_to_app</i>
+          <Icon left>exit_to_app</Icon>
           Logout
         </div>
       </Link>

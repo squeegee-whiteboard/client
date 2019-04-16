@@ -28,7 +28,7 @@ class Whiteboard extends React.Component {
 
     const memberResult = await boardInfo.isMember(token, boardId);
 
-    if (!memberResult.success) {
+    if (!memberResult.success || !memberResult.is_member) {
       // TODO: error handling
       console.log(`Got error trying to be member of board: ${memberResult.message}`);
       console.log(`Trying to add self to members of board: ${boardId}`);

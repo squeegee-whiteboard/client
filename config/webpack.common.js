@@ -6,7 +6,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsplugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
-  entry: ['babel-polyfill', './src/index.jsx'],
+  entry: './src/index.jsx',
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
@@ -36,6 +36,7 @@ module.exports = {
         options: {
           cacheDirectory: true,
           presets: ['@babel/preset-env', '@babel/preset-react'],
+          plugins: ['@babel/plugin-transform-runtime'],
         },
       },
       {

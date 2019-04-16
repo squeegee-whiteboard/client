@@ -1,7 +1,19 @@
+.notfound {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .notfound h1 {
     color: black;
 }
 
 .notfound h2 {
     color: black;
+}
+
+.notfound .notfound-img {
+    background-repeat: no-repeat;
+    background-size: contain;
+    flex-grow: 1;
 }
