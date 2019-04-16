@@ -27,6 +27,14 @@
     z-index: 2;
 }
 
+.toggle-mobile .material-icons {
+    transition: transform 0.2s;
+}
+
+.toggle-mobile .rotated-icon {
+    transform: rotate(180deg);
+}
+
 .board {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
@@ -40,7 +48,7 @@
     }
 
     .mobile-hidden {
-        display: none;
+        transform: translateX(-105%);
     }
 
     .toggle-mobile {

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Preloader, Button } from 'react-materialize';
+import { Preloader, Button, Icon } from 'react-materialize';
 import io from 'socket.io-client';
 import Board from '../components/board';
 import Toolbox from '../components/toolbox';
@@ -16,7 +16,7 @@ class Whiteboard extends React.Component {
     this.state = {
       mounted: false,
       mobile: false,
-      mobileText: '>>',
+      mobileRotate: false,
     };
 
     this.toggleMobile = this.toggleMobile.bind(this);
@@ -67,22 +67,22 @@ class Whiteboard extends React.Component {
     if (mobile) {
       this.setState({
         mobile: !mobile,
-        mobileText: '>>',
+        mobileRotate: false,
       });
     } else {
       this.setState({
         mobile: !mobile,
-        mobileText: '<<',
+        mobileRotate: true,
       });
     }
   }
 
   render() {
-    const { mounted, mobileText, mobile } = this.state;
+    const { mounted, mobileRotate, mobile } = this.state;
     return (mounted ? (
       <div className="whiteboard">
         <Button className="toggle-mobile" type="button" onClick={this.toggleMobile}>
-          {mobileText}
+          <Icon className={mobileRotate ? 'rotated-icon' : ''}>arrow_forward</Icon>
         </Button>
         <Toolbox socket={this.socket} mobile={mobile} />
         <Board socket={this.socket} />
