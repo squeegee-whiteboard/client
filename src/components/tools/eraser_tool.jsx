@@ -12,15 +12,15 @@ class EraserTool extends BaseTool {
     this.toolText = 'Erase';
     this.toolId = EraserTool.TOOL_ID;
 
-    // TODO: Investigate hit test not doing anything
-    // TODO: Improve eraser hit detection
-    // Create the eraser tool
-    // this.removeList = [];
+    this.hitTest = this.hitTest.bind(this);
+  }
 
+  componentDidMount() {
     // Get all of the intersections with the erase tool, remove any path that the
     // eraser path intersects with.
     this.tool.onMouseDown = (event) => {
       const { toolSettings: { eraserSettings } } = this.props;
+      this.removeList = [];
 
       this.path = new Path();
       this.path.strokeColor = new Color(0, 0, 0, 0.5);
@@ -34,33 +34,52 @@ class EraserTool extends BaseTool {
     this.tool.onMouseDrag = (event) => {
       this.path.add(event.point);
 
-      // TODO: Remove this if we remove hit testing for real
-      // Tests if we've collided with a stroke with our eraser
-      // const hitObj = project.hitTest(event.point, { stroke: true });
-      // if (hitObj) {
-      //   this.removeList.push(hitObj.item);
-      // }
+      this.hitTest(event.point);
     };
 
     // Remove the items in the removelist on mouse up
-    this.tool.onMouseUp = () => {
-      const items = project.activeLayer.getItems();
-      const intersections = items.filter(item => this.path.intersects(item));
-      intersections.forEach(item => item.remove());
+    this.tool.onMouseUp = (event) => {
+      // Remove the path
       this.path.remove();
 
-      // TODO: remove this if we remove hit testing for real
-      // this.removeList.forEach(item => item.remove());
-      // this.removeList = [];
+      // If the path was too short, hit test at the click location
+      if (this.path.segments.length < 2) {
+        this.hitTest(event.point);
+      }
+
+      this.removeList.forEach(item => item.remove());
 
       const { socket } = this.props;
-      const pathJSONList = intersections.map(path => path.exportJSON());
+      const pathJSONList = this.removeList.map(item => item.exportJSON());
 
       // Only broadcast if we actually removed something
       if (pathJSONList.length > 0) {
         socket.emit('removed_paths', pathJSONList);
       }
     };
+  }
+
+  hitTest(point) {
+    // Test if we've collided with a stroke with our eraser
+    const hitObject = project.hitTest(
+      point,
+      {
+        stroke: true,
+        segments: true,
+        fill: true,
+        // This makes sure width actually makes the eraser bigger
+        tolerance: this.path.strokeWidth / 2,
+        // Don't match the current path
+        match: result => result.item.id !== this.path.id,
+      },
+    );
+
+    // Return the object if it's not already in the list
+    if (hitObject !== null) {
+      if (!this.removeList.includes(hitObject.item)) {
+        this.removeList.push(hitObject.item);
+      }
+    }
   }
 }
 
