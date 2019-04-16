@@ -1,4 +1,5 @@
 /* eslint import/no-commonjs: "off", import/no-extraneous-dependencies: "off" */
+const path = require('path');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
