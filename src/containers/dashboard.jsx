@@ -47,28 +47,24 @@ class Dashboard extends React.Component {
     const { boards, mounted } = this.state;
     const boardList = boards.map(b => (
       <div className="col s12 m6 l4" key={b.board_name + b.board_id}>
-        {(mounted ? (
-          <DashCanvas socket={this.socket} boardId={b.board_id} title={b.board_name} />
-        ) : (
-          <Preloader size="big" flashing />
-        ))}
+        <DashCanvas socket={this.socket} boardId={b.board_id} title={b.board_name} />
       </div>
     ));
     return (
       <div className="dashboard">
-        <div>
-          <h5>Your Whiteboards</h5>
-        </div>
-        <div className="row">
-          <div className="col s12 m6 l4">
-            {(mounted ? (
+        <h5>Your Whiteboards</h5>
+        {(mounted ? (
+          <div className="row">
+            <div className="col s12 m6 l4">
               <DashAddNew socket={this.socket} />
-            ) : (
-              <Preloader size="big" flashing />
-            ))}
+            </div>
+            {boardList}
           </div>
-          {boardList}
-        </div>
+        ) : (
+          <div className="dashboard-preload">
+            <Preloader size="big" flashing />
+          </div>
+        ))}
       </div>
     );
   }

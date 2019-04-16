@@ -51,6 +51,11 @@
     position: relative;
     overflow: hidden;
 }
+
+.card .card-reveal {
+    overflow-y: hidden !important;
+}
+
 #board-name-title{
     position: absolute;
     bottom: 0;

@@ -5,5 +5,13 @@
 
 .dashboard{
     background-color: #f9f9f9;
-    height: 100%;
+    flex-grow: 1;
+}
+
+.dashboard-preload {
+    margin-top: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
 }
