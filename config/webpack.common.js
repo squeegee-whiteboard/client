@@ -6,7 +6,10 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsplugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: {
+    app: './src/index.jsx',
+    notFound: './src/404.jsx',
+  },
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
@@ -20,8 +23,15 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      chunks: ['app'],
       hash: true,
       template: './src/index.html',
+    }),
+    new HtmlWebpackPlugin({
+      chunks: ['notFound'],
+      hash: true,
+      template: './src/404.html',
+      filename: '404.html',
     }),
   ],
   module: {
@@ -49,6 +59,6 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
   },
 };

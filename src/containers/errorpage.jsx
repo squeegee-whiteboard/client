@@ -2,7 +2,7 @@ import React from 'react';
 import './errorpage.css';
 import lookingForMe from './404.png';
 
-function Errorpage(props) {
+function Errorpage() {
   return (
     <div className="container notfound">
       <h1>404 Not Found</h1>
@@ -14,4 +14,5 @@ function Errorpage(props) {
     </div>
   );
 }
+
 export default Errorpage;

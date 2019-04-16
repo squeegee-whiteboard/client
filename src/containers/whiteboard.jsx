@@ -47,7 +47,7 @@ class Whiteboard extends React.Component {
 
     // After mounting, connect to the server socket
     this.socket = io(`${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/board`, {
-      'path': `${apiConfig.EXT}/socket.io`,
+      path: `${apiConfig.EXT}/socket.io`,
     });
     this.socket.on('connect', () => {
       this.socket.emit('boardId', boardId);
@@ -78,13 +78,13 @@ class Whiteboard extends React.Component {
   }
 
   render() {
-    const { mounted } = this.state;
+    const { mounted, mobileText, mobile } = this.state;
     return (mounted ? (
       <div className="whiteboard">
         <Button className="toggle-mobile" type="button" onClick={this.toggleMobile}>
-          {this.state.mobileText}
+          {mobileText}
         </Button>
-        <Toolbox socket={this.socket} mobile={this.state.mobile} />
+        <Toolbox socket={this.socket} mobile={mobile} />
         <Board socket={this.socket} />
       </div>
     ) : (

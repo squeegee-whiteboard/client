@@ -11,7 +11,7 @@ import Account from './account';
 import Login from './login';
 import Signup from './signup';
 import Nav from '../components/nav';
-import Errorpage from '../components/errorpage';
+import Errorpage from './errorpage';
 import { PrivateRoute, NoLoginRoute } from '../components/redirect_routes';
 
 function App() {
