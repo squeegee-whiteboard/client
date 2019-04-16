@@ -24,7 +24,9 @@ class Dashboard extends React.Component {
     this.updateBoards();
 
     // After mounting, connect to the server socket
-    this.socket = io(`${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}${apiConfig.EXT}/dash`);
+    this.socket = io(`${apiConfig.URL_SCHEME}://${apiConfig.IP}:${apiConfig.PORT}/dash`, {
+      'path': `${apiConfig.EXT}/socket.io`,
+    });
     this.socket.on('connect', () => {
       this.socket.on('refresh_boards', this.updateBoards);
       this.setState({ mounted: true });
