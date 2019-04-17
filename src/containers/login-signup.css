@@ -1,19 +1,20 @@
 .page-container{
   background-color: #1F2833;
-  height: 100%;
+  flex-grow: 1;
 }
 
 .login-signup-error {
   color: red;
 }
 
+.login-signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .login-signup {
-  width: 280px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #1F2833;
+  max-width: 280px;
 }
 
 .login-signup h1 {

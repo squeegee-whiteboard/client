@@ -5,6 +5,7 @@ import DashCanvas from '../components/dashcanvas';
 import DashAddNew from '../components/dashaddnew';
 import apiConfig from '../../config/apiConfig';
 import './dashboard.css';
+import M from '../../node_modules/materialize-css/dist/js/materialize.min';
 
 import { boardInfo } from '../api';
 
@@ -44,8 +45,7 @@ class Dashboard extends React.Component {
     const memberResult = await boardInfo.member(localStorage.getItem('JWT'));
 
     if (!memberResult.success) {
-      // TODO: error handling
-      console.log(`error getting board list: ${memberResult.message}`);
+      M.toast({ html: `Error getting board list: ${memberResult.message}` });
       return;
     }
 
@@ -61,16 +61,18 @@ class Dashboard extends React.Component {
     ));
     return (
       <div className="dashboard">
-        <h5>Your Whiteboards</h5>
         {(mounted ? (
-          <div className="row">
-            <div className="col s12 m6 l4">
-              <DashAddNew socket={this.socket} />
+          <>
+            <h5>Your Whiteboards</h5>
+            <div className="row">
+              <div className="col s12 m6 l4">
+                <DashAddNew socket={this.socket} />
+              </div>
+              {boardList}
             </div>
-            {boardList}
-          </div>
+          </>
         ) : (
-          <div className="dashboard-preload">
+          <div className="centered-preload dashboard-preload">
             <Preloader size="big" flashing />
           </div>
         ))}

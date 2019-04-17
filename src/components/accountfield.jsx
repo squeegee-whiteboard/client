@@ -2,7 +2,7 @@ import React from 'react';
 import './accountfield.css';
 import PropTypes from 'prop-types';
 import { changeUser } from '../api';
-
+import M from '../../node_modules/materialize-css/dist/js/materialize.min';
 
 class AccountField extends React.Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class AccountField extends React.Component {
       resetVal: val,
       active: false,
     };
+
     this.toggleActivity = this.toggleActivity.bind(this);
     this.updateVal = this.updateVal.bind(this);
     this.changeUserInfo = this.changeUserInfo.bind(this);
@@ -31,19 +32,23 @@ class AccountField extends React.Component {
     }
   }
 
-  changeUserInfo(e) {
+  async changeUserInfo(e) {
     e.preventDefault(); // Prevents navigation away from page.
     const { currentVal } = this.state;
     const { name } = this.props;
+    let result;
     if (name === 'email') {
-      changeUser.email(localStorage.getItem('JWT'), currentVal).then((result) => { console.log(result); });
+      result = await changeUser.email(localStorage.getItem('JWT'), currentVal);
+    } else if (name === 'username') {
+      result = await changeUser.username(localStorage.getItem('JWT'), currentVal);
     }
-    else if (name === 'username') {
-      changeUser.username(localStorage.getItem('JWT'), currentVal).then((result) => { console.log(result); });
+
+    if (!result.success) {
+      M.toast({ html: `Error changing ${name}: ${result.message}` });
+      return;
     }
 
     this.setState({ active: false, currentVal, resetVal: currentVal });
-
   }
 
   render() {

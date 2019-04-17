@@ -7,6 +7,7 @@ import Toolbox from '../components/toolbox';
 import apiConfig from '../../config/apiConfig';
 import { boardInfo, changeBoard } from '../api';
 import './whiteboard.css';
+import M from '../../node_modules/materialize-css/dist/js/materialize.min';
 
 class Whiteboard extends React.Component {
   constructor(props) {
@@ -29,14 +30,10 @@ class Whiteboard extends React.Component {
     const memberResult = await boardInfo.isMember(token, boardId);
 
     if (!memberResult.success || !memberResult.is_member) {
-      // TODO: error handling
-      console.log(`Got error trying to be member of board: ${memberResult.message}`);
-      console.log(`Trying to add self to members of board: ${boardId}`);
       const addMemberResult = await changeBoard.addMember(token, boardId);
 
       if (!addMemberResult.success) {
-        // TODO: error handling
-        console.log(`Got error trying to add self to board members: ${addMemberResult.message}`);
+        M.toast({ html: `Error trying to add board: ${addMemberResult.message}` });
         const { history } = this.props;
 
         // Stop here so we don't try to connect to the socket
@@ -88,7 +85,7 @@ class Whiteboard extends React.Component {
         <Board socket={this.socket} />
       </div>
     ) : (
-      <div className="whiteboard-preload">
+      <div className="centered-preload">
         <Preloader size="big" flashing />
       </div>
     ));

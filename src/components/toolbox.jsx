@@ -30,9 +30,9 @@ class Toolbox extends React.Component {
 
   render() {
     const { selectedTool, toolSettings } = this.state;
-    const { socket } = this.props;
+    const { socket, mobile } = this.props;
     return (
-      <div className={`toolbox${this.props.mobile ? '' : ' mobile-hidden'}`}>
+      <div className={`toolbox${mobile ? '' : ' mobile-hidden'}`}>
         <div className="tools">
           <PanTool
             selectedTool={selectedTool}
@@ -74,6 +74,7 @@ Toolbox.propTypes = {
   socket: PropTypes.shape({
     emit: PropTypes.func,
   }).isRequired,
+  mobile: PropTypes.bool.isRequired,
 };
 
 export default Toolbox;

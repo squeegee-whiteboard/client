@@ -1,17 +1,13 @@
-.dashboard h5{
-    color:black;
+.dashboard h5 {
+    color: black;
     padding-left:15px;
 }
 
-.dashboard{
+.dashboard {
     background-color: #f9f9f9;
     flex-grow: 1;
 }
 
 .dashboard-preload {
-    margin-top: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
+    height: 100%;
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { TextInput, Button } from 'react-materialize';
 import { auth } from '../api';
 import './login-signup.css';
-
+import M from '../../node_modules/materialize-css/dist/js/materialize.min';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -17,6 +17,11 @@ class Signup extends React.Component {
       formErrors: '',
     };
 
+    // Configure the target from the props
+    const { location: { state } } = this.props;
+    const { from: target } = state || { from: { pathname: '/dashboard' } };
+    this.target = target;
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -28,8 +33,8 @@ class Signup extends React.Component {
       [event.target.name]: event.target.value,
     });
 
-    if (event.target.name == 'password') password = event.target.value;
-    else if (event.target.name == 'confirm') confirm = event.target.value;
+    if (event.target.name === 'password') password = event.target.value;
+    else if (event.target.name === 'confirm') confirm = event.target.value;
     if (password !== confirm) {
       document.getElementById('confirm_password_box').setCustomValidity("Passwords don't match!");
       document.getElementById('confirm_password_box').classList.add('invalid');
@@ -46,7 +51,6 @@ class Signup extends React.Component {
       email,
       username,
       password,
-      // formValid,
     } = this.state;
 
     let errorMsg = '';
@@ -62,21 +66,15 @@ class Signup extends React.Component {
       const { success } = result;
 
       if (!success) {
-        // TODO: error
-        console.log('error signing up');
-        console.log(result.error);
+        M.toast({ html: `Error signing up: ${result.message}` });
         return;
       }
 
       const { token } = result;
-      console.log('Setting token...');
       localStorage.setItem('JWT', token);
 
-
-      // TODO: feedback
-      console.log('successful signup');
       const { history } = this.props;
-      history.push('/dashboard');
+      history.push(this.target);
     });
   }
 
@@ -87,13 +85,9 @@ class Signup extends React.Component {
       password,
       confirm,
       formErrors,
-      // formErrors,
-      // passwordValid,
-      // formValid,
     } = this.state;
-    // TODO: More validation
     return (
-      <div className="page-container">
+      <div className="page-container login-signup-container">
         <div className="login-signup">
           <h1>Squeegee</h1>
           {!!formErrors && <span className="login-signup-error">{formErrors}</span>}
@@ -170,6 +164,15 @@ class Signup extends React.Component {
 Signup.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
+  }).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      from: PropTypes.shape({
+        pathname: PropTypes.string,
+        search: PropTypes.string,
+        hash: PropTypes.string,
+      }),
+    }),
   }).isRequired,
 };
 

@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { TextInput, Button } from 'react-materialize';
 import { auth } from '../api';
 import './login-signup.css';
+import M from '../../node_modules/materialize-css/dist/js/materialize.min';
 
-// TODO: add redirect to from path (populated in redirect_routes PrivateRoute)
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -15,10 +15,12 @@ class Login extends React.Component {
       email: '',
       password: '',
       formErrors: '',
-      // emailValid: false,
-      // formValid: false,
-
     };
+
+    // Configure the target from the props
+    const { location: { state } } = this.props;
+    const { from: target } = state || { from: { pathname: '/dashboard' } };
+    this.target = target;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -47,26 +49,23 @@ class Login extends React.Component {
       const { success } = result;
 
       if (!success) {
-        console.log('error logging in');
-        console.log(result.error);
+        M.toast({ html: `Error logging in: ${result.message}` });
         return;
       }
 
       const { token } = result;
       localStorage.setItem('JWT', token);
 
-
-      // TODO: feedback
-      console.log('successful signup');
       const { history } = this.props;
-      history.push('/dashboard');
+      history.push(this.target);
     });
   }
 
   render() {
     const { email, password, formErrors } = this.state;
+    const { location: { state } } = this.props;
     return (
-      <div className="page-container">
+      <div className="page-container login-signup-container">
         <div className="login-signup">
           <h1>Squeegee</h1>
           {!!formErrors && <span className="login-signup-error">{formErrors}</span>}
@@ -97,7 +96,13 @@ class Login extends React.Component {
             <Button type="submit" waves="light">
               Login
             </Button>
-            <Link className="btn account-btn" to="/signup">
+            <Link
+              className="btn account-btn"
+              to={{
+                pathname: '/signup',
+                state,
+              }}
+            >
               Create New Account
             </Link>
           </form>
@@ -110,6 +115,15 @@ class Login extends React.Component {
 Login.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
+  }).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      from: PropTypes.shape({
+        pathname: PropTypes.string,
+        search: PropTypes.string,
+        hash: PropTypes.string,
+      }),
+    }),
   }).isRequired,
 };
 

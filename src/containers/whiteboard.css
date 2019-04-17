@@ -11,13 +11,6 @@
     margin-bottom: 15px;
 }
 
-.whiteboard-preload {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-}
-
 .toggle-mobile {
     display: none !important;
     position: absolute;

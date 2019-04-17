@@ -6,7 +6,7 @@ import BoardModal from './boardModal';
 import ShareModal from './shareModal';
 import { changeBoard } from '../api';
 import './dashcanvas.css';
-
+import M from '../../node_modules/materialize-css/dist/js/materialize.min';
 
 class DashCanvas extends React.Component {
   constructor(props) {
@@ -27,8 +27,7 @@ class DashCanvas extends React.Component {
     const changeResult = await changeBoard.name(localStorage.getItem('JWT'), newTitle, boardId);
 
     if (!changeResult.success) {
-      // TODO: error handling
-      console.log(`error changing result: ${changeResult.message}`);
+      M.toast({ html: `Error renaming board: ${changeResult.message}` });
       return;
     }
 
@@ -42,8 +41,7 @@ class DashCanvas extends React.Component {
     const deleteResult = await changeBoard.deleteBoard(localStorage.getItem('JWT'), boardId);
 
     if (!deleteResult.success) {
-      // TODO: error handling
-      console.log(`error deleting board: ${deleteResult.message}`);
+      M.toast({ html: `Error deleting board: ${deleteResult.message}` });
       return;
     }
 

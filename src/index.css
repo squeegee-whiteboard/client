@@ -8,3 +8,10 @@ body, html {
     display: flex;
     flex-direction: column;
 }
+
+.centered-preload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
