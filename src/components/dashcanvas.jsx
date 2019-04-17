@@ -56,16 +56,21 @@ class DashCanvas extends React.Component {
 
   render() {
     const { title } = this.state;
-    const { boardId } = this.props;
+    const { boardId, preview } = this.props;
+    // const parser = new DOMParser();
+    // const renderedPreview = parser.parseFromString(preview, 'image/svg+xml');
+    // console.log(renderedPreview);
     return (
       <div className="card">
         <div className="card-content">
-          <Link className="whitespace" to={`/whiteboard/${boardId}`} />
-          <div className="card-title grey-text text-darken-4 center" id="board-name-title">
-            <Link className="whitespace" to={`/whiteboard/${boardId}`}>
-              {title}
-            </Link>
-            <i className="material-icons activator right more-options-icon">more_vert</i>
+          <Link to={`/whiteboard/${boardId}`} className="card-preview" dangerouslySetInnerHTML={{ __html: preview }} />
+          <div className="whiteboard-name-container card-title grey-text text-darken-4 center">
+            <div className="title-container">
+              <Link to={`/whiteboard/${boardId}`}>
+                {title}
+              </Link>
+              <i className="material-icons activator more-options-icon">more_vert</i>
+            </div>
           </div>
         </div>
         <div className="card-reveal">
@@ -147,6 +152,7 @@ DashCanvas.propTypes = {
     emit: PropTypes.func.isRequired,
   }).isRequired,
   removeBoard: PropTypes.func.isRequired,
+  preview: PropTypes.string.isRequired,
 };
 
 export default DashCanvas;

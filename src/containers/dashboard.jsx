@@ -75,6 +75,7 @@ class Dashboard extends React.Component {
           socket={this.socket}
           boardId={b.board_id}
           title={b.board_name}
+          preview={b.board_preview}
           removeBoard={this.removeBoard}
         />
       </div>
