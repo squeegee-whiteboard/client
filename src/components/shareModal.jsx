@@ -1,24 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import './dashaddnew.css';
-import { Modal, Button } from 'react-materialize';
+import { Modal, Button, Icon } from 'react-materialize';
+import M from '../../node_modules/materialize-css/dist/js/materialize.min';
 
 class ShareModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { url: '' };
+
+    this.state = {
+      target: '',
+      readyForCopy: false,
+    };
+
+    this.copyTarget = this.copyTarget.bind(this);
   }
 
   componentDidMount() {
+    const { boardId } = this.props;
     this.setState({
-      url: `${window.location.protocol}//${window.location.host}/#/whiteboard/`,
+      target: `${window.location.protocol}//${window.location.host}/#/whiteboard/${boardId}`,
+      readyForCopy: true,
     });
   }
 
+  copyTarget() {
+    this.copyInput.select();
+    const success = document.execCommand('copy');
+    if (success) {
+      M.toast({ html: 'Copied link to clipboard' });
+    } else {
+      M.toast({ html: 'Could not copy link to clipboard' });
+    }
+  }
+
   render() {
-    const { button, boardId } = this.props;
-    const { url } = this.state;
+    const { button } = this.props;
+    const { target, readyForCopy } = this.state;
     return (
       <Modal
         header="Copy this shareable link"
@@ -34,11 +52,12 @@ class ShareModal extends React.Component {
           </div>
         )}
       >
-        <Link to={`/whiteboard/${boardId}`}>
-          {url + boardId}
-        </Link>
+        <input ref={(input) => { this.copyInput = input; }} readOnly value={target} />
+        <Button disabled={!readyForCopy} onClick={this.copyTarget}>
+          <Icon left>file_copy</Icon>
+          Copy to Clipboard
+        </Button>
       </Modal>
-
     );
   }
 }

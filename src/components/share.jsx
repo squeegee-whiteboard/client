@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {
   Button,
   Modal,
@@ -8,26 +8,41 @@ import {
   Icon,
 } from 'react-materialize';
 import './share.css';
-
+import M from '../../node_modules/materialize-css/dist/js/materialize.min';
 
 class Share extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      location: '',
+      target: '',
+      readyForCopy: false,
     };
+
+    this.copyInput = React.createRef();
+    this.copyTarget = this.copyTarget.bind(this);
   }
 
   componentDidMount() {
+    const { location } = this.props;
     this.setState({
-      location: `${window.location.protocol}//${window.location.host}/#`,
+      target: `${window.location.protocol}//${window.location.host}/#${location.pathname}`,
+      readyForCopy: true,
     });
   }
 
+  copyTarget() {
+    this.copyInput.select();
+    const success = document.execCommand('copy');
+    if (success) {
+      M.toast({ html: 'Copied link to clipboard' });
+    } else {
+      M.toast({ html: 'Could not copy link to clipboard' });
+    }
+  }
+
   render() {
-    const { location: { pathname } } = this.props;
-    const { location: winLocation } = this.state;
+    const { target, readyForCopy } = this.state;
 
     return (
       <Modal
@@ -49,9 +64,11 @@ class Share extends React.Component {
           </div>
           )}
       >
-        <Link to={pathname}>
-          {winLocation + pathname}
-        </Link>
+        <input ref={(input) => { this.copyInput = input; }} readOnly value={target} />
+        <Button disabled={!readyForCopy} onClick={this.copyTarget}>
+          <Icon left>file_copy</Icon>
+          Copy to Clipboard
+        </Button>
       </Modal>
     );
   }
