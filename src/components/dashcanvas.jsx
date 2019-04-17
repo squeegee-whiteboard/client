@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Icon } from 'react-materialize';
+import { Modal, Button, Icon } from 'react-materialize';
 import PropTypes from 'prop-types';
 import BoardModal from './boardModal';
 import ShareModal from './shareModal';
@@ -14,9 +14,10 @@ class DashCanvas extends React.Component {
 
     const { title } = this.props;
     this.state = {
-      existent: true,
       title,
     };
+
+    this.closeButton = React.createRef();
 
     this.renameBoard = this.renameBoard.bind(this);
     this.deleteBoard = this.deleteBoard.bind(this);
@@ -34,10 +35,13 @@ class DashCanvas extends React.Component {
     this.setState({ title: newTitle });
     const { socket } = this.props;
     socket.emit('change_board');
+
+    // Close the card reveal
+    this.closeButton.click();
   }
 
   async deleteBoard() {
-    const { boardId } = this.props;
+    const { boardId, removeBoard } = this.props;
     const deleteResult = await changeBoard.deleteBoard(localStorage.getItem('JWT'), boardId);
 
     if (!deleteResult.success) {
@@ -47,13 +51,12 @@ class DashCanvas extends React.Component {
 
     const { socket } = this.props;
     socket.emit('change_board');
-    this.setState({ existent: false });
+    removeBoard(boardId);
   }
 
   render() {
-    const { existent, title } = this.state;
+    const { title } = this.state;
     const { boardId } = this.props;
-    if (!existent) return null;
     return (
       <div className="card">
         <div className="card-content">
@@ -69,7 +72,7 @@ class DashCanvas extends React.Component {
           <div className="menu-wrapper">
             <div className="holder" />
             <div className="card-title white-text">
-              <i className="material-icons right" id="close">close</i>
+              <i ref={(i) => { this.closeButton = i; }} className="material-icons right close-button">close</i>
             </div>
             <span>
               <BoardModal
@@ -95,17 +98,39 @@ class DashCanvas extends React.Component {
                 )}
                 boardId={boardId}
               />
-              {/* TODO: better accessibility */}
-              {/* eslint-disable jsx-a11y/click-events-have-key-events,
-                    jsx-a11y/no-static-element-interactions */}
-              <div className="option" onClick={this.deleteBoard}>
-                {/* eslint-enable jsx-a11y/click-events-have-key-events,
-                      jsx-a11y/no-static-element-interactions */}
-                <span className="option-contents">
-                  <Icon left>delete</Icon>
-                  <p>Delete</p>
-                </span>
-              </div>
+              <Modal
+                options={{ dismissable: false }}
+                header="Delete a board"
+                trigger={(
+                  <div className="option">
+                    <span className="option-contents">
+                      <Icon left>delete</Icon>
+                      <p>Delete</p>
+                    </span>
+                  </div>
+                )}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    this.deleteBoard();
+                  }
+                }}
+                actions={(
+                  <div>
+                    <Button flat modal="close" waves="light" className="transparent" onClick={this.deleteBoard}>
+                      <Icon modalicon>
+                        check
+                      </Icon>
+                    </Button>
+                    <Button flat modal="close" waves="light" className="transparent">
+                      <i className="material-icons modalicon">
+                        close
+                      </i>
+                    </Button>
+                  </div>
+                )}
+              >
+                {`Are you sure you want to delete the board '${title}'?`}
+              </Modal>
             </span>
           </div>
         </div>
@@ -121,6 +146,7 @@ DashCanvas.propTypes = {
   socket: PropTypes.shape({
     emit: PropTypes.func.isRequired,
   }).isRequired,
+  removeBoard: PropTypes.func.isRequired,
 };
 
 export default DashCanvas;

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './dashaddnew.css';
 import { Modal, Button, Icon } from 'react-materialize';
+import M from '../../node_modules/materialize-css/dist/js/materialize.min';
 
 class BoardModal extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class BoardModal extends React.Component {
   doSubmit() {
     const { submitFunction } = this.props;
     const { boardName } = this.state;
+    this.setState({ boardName: '' });
     submitFunction(boardName);
   }
 
@@ -23,10 +25,19 @@ class BoardModal extends React.Component {
     const { button } = this.props;
     return (
       <Modal
-        options={{ dismissable: false }}
+        options={{
+          dismissable: false,
+          onOpenStart: (elem) => { this.modal = M.Modal.getInstance(elem); },
+          onOpenEnd: elem => elem.querySelector('input').focus(),
+        }}
         header="Creating a new board"
-        modal-footer="confirm"
         trigger={button}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            this.doSubmit();
+            this.modal.close();
+          }
+        }}
         actions={(
           <div>
             <Button flat modal="close" waves="light" className="transparent" onClick={this.doSubmit}>

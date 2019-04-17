@@ -19,6 +19,7 @@ class Dashboard extends React.Component {
     };
 
     this.updateBoards = this.updateBoards.bind(this);
+    this.removeBoard = this.removeBoard.bind(this);
   }
 
   componentDidMount() {
@@ -41,6 +42,20 @@ class Dashboard extends React.Component {
     }
   }
 
+  removeBoard(boardId) {
+    const { boards } = this.state;
+
+    // Don't mutate the state, make a copy of the array
+    const newBoards = boards.slice();
+
+    // Find and remove the board from the new board list
+    const index = newBoards.find(board => board.board_id === boardId);
+    newBoards.splice(index, 1);
+
+    // Update the state
+    this.setState({ boards: newBoards });
+  }
+
   async updateBoards() {
     const memberResult = await boardInfo.member(localStorage.getItem('JWT'));
 
@@ -56,7 +71,12 @@ class Dashboard extends React.Component {
     const { boards, mounted } = this.state;
     const boardList = boards.map(b => (
       <div className="col s12 m6 l4" key={b.board_name + b.board_id}>
-        <DashCanvas socket={this.socket} boardId={b.board_id} title={b.board_name} />
+        <DashCanvas
+          socket={this.socket}
+          boardId={b.board_id}
+          title={b.board_name}
+          removeBoard={this.removeBoard}
+        />
       </div>
     ));
     return (
