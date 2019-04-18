@@ -48,6 +48,7 @@ class AccountField extends React.Component {
       return;
     }
 
+    M.toast({ html: `Successfully update ${name}` });
     this.setState({ active: false, currentVal, resetVal: currentVal });
   }
 

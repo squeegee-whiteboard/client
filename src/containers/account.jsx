@@ -60,6 +60,8 @@ class Account extends React.Component {
     if (!result.success) {
       M.toast({ html: `Error changing password: ${result.message}` });
     }
+
+    M.toast({ html: 'Successfully updated password' });
   }
 
   render() {

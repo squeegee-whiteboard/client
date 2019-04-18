@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Icon } from 'react-materialize';
@@ -6,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { changeBoard } from '../api';
 import BoardModal from './boardModal';
 import './dashaddnew.css';
-
+import M from '../../node_modules/materialize-css/dist/js/materialize.min';
 
 class DashAddNew extends React.Component {
   constructor(props) {
@@ -15,13 +14,18 @@ class DashAddNew extends React.Component {
     this.createBoard = this.createBoard.bind(this);
   }
 
-  createBoard(value) {
+  async createBoard(value) {
     const { history } = this.props;
-    changeBoard.create(localStorage.getItem('JWT'), value).then((result) => {
-      history.push(`/whiteboard/${result.board_id}/`);
-    });
+    const result = changeBoard.create(localStorage.getItem('JWT'), value);
+
+    if (!result.success) {
+      M.toast({ html: `Error creating new board: ${result.message}` });
+      return;
+    }
+
     const { socket } = this.props;
     socket.emit('change_board');
+    history.push(`/whiteboard/${result.board_id}/`);
   }
 
   render() {
