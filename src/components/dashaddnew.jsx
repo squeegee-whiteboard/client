@@ -16,7 +16,7 @@ class DashAddNew extends React.Component {
 
   async createBoard(value) {
     const { history } = this.props;
-    const result = changeBoard.create(localStorage.getItem('JWT'), value);
+    const result = await changeBoard.create(localStorage.getItem('JWT'), value);
 
     if (!result.success) {
       M.toast({ html: `Error creating new board: ${result.message}` });
