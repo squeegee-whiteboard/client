@@ -49,7 +49,7 @@ class Dashboard extends React.Component {
     const newBoards = boards.slice();
 
     // Find and remove the board from the new board list
-    const index = newBoards.find(board => board.board_id === boardId);
+    const index = newBoards.findIndex(board => board.board_id === boardId);
     newBoards.splice(index, 1);
 
     // Update the state

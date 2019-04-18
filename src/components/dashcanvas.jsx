@@ -57,9 +57,6 @@ class DashCanvas extends React.Component {
   render() {
     const { title } = this.state;
     const { boardId, preview } = this.props;
-    // const parser = new DOMParser();
-    // const renderedPreview = parser.parseFromString(preview, 'image/svg+xml');
-    // console.log(renderedPreview);
     return (
       <div className="card">
         <div className="card-content">
